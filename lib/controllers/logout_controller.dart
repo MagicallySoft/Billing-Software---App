@@ -1,0 +1,23 @@
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import '../routes/routes.dart';
+
+class LogoutController extends GetxController {
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+
+  void logout() async {
+    try {
+      await _auth.signOut();
+      Get.offAllNamed(Routes.login);
+    } catch (e) {
+      Get.snackbar(
+        "Logout Failed",
+        e.toString(),
+        snackPosition: SnackPosition.BOTTOM,
+      );
+    }
+  }
+}

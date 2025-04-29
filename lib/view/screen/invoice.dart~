@@ -1,0 +1,238 @@
+import 'package:flutter/material.dart';
+
+final TextEditingController invoiceNumberController = TextEditingController();
+final TextEditingController invoiceDocumentNumberController =
+    TextEditingController();
+final TextEditingController invoiceDateController = TextEditingController();
+final TextEditingController dueDateController = TextEditingController();
+final TextEditingController paymentTypeController = TextEditingController();
+final TextEditingController accountDetailsController = TextEditingController();
+
+final TextEditingController sellerNameController = TextEditingController();
+final TextEditingController sellerAddressController = TextEditingController();
+final TextEditingController sellerContactController = TextEditingController();
+final TextEditingController sellerTaxNumberController = TextEditingController();
+
+final TextEditingController buyerNameController = TextEditingController();
+final TextEditingController buyerAddressController = TextEditingController();
+final TextEditingController buyerContactController = TextEditingController();
+
+List<Map<String, String>> items = [];
+final TextEditingController itemNameController = TextEditingController();
+final TextEditingController itemQuantityController = TextEditingController();
+final TextEditingController itemPriceController = TextEditingController();
+
+class InvoiceHomePage extends StatefulWidget {
+  const InvoiceHomePage({super.key});
+
+  @override
+  State<InvoiceHomePage> createState() => _InvoiceHomePageState();
+}
+
+class _InvoiceHomePageState extends State<InvoiceHomePage> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    invoiceNumberController.text = _generateInvoiceNumber();
+  }
+
+  String _generateInvoiceNumber() {
+    final now = DateTime.now();
+    final random = (1000 + now.millisecond).toString();
+    return "INV${now.year}${now.month}${now.day}$random";
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.grey[200],
+      appBar: AppBar(
+        title: const Text("Invoice Generator"),
+        backgroundColor: Colors.blueAccent,
+        elevation: 0,
+      ),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          children: [
+            TextField(
+              readOnly: true,
+              controller: invoiceNumberController,
+              decoration: InputDecoration(
+                labelText: "Invoice Number",
+                prefixIcon: Icon(
+                  Icons.confirmation_number,
+                  color: Colors.blueAccent,
+                ),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                filled: true,
+                fillColor: Colors.white,
+              ),
+            ),
+            _buildTextField(
+              controller: invoiceDocumentNumberController,
+              label: "Enter Invoice Document Number",
+              icon: Icons.confirmation_number,
+            ),
+            _buildTextField(
+              controller: invoiceDateController,
+              label: "Invoice Date",
+              icon: Icons.date_range,
+            ),
+            _buildTextField(
+              controller: dueDateController,
+              label: "Due Date",
+              icon: Icons.event,
+            ),
+            _buildSection("Seller Details", [
+              _buildTextField(
+                controller: sellerNameController,
+                label: "Seller Name",
+                icon: Icons.store,
+              ),
+              _buildTextField(
+                controller: sellerAddressController,
+                label: "Seller Address",
+                icon: Icons.location_on,
+              ),
+              _buildTextField(
+                controller: sellerContactController,
+                label: "Seller Contact",
+                icon: Icons.phone,
+              ),
+              _buildTextField(
+                controller: sellerTaxNumberController,
+                label: "Seller Tax Number",
+                icon: Icons.confirmation_number,
+              ),
+            ]),
+            _buildSection("Buyer Details", [
+              _buildTextField(
+                controller: buyerNameController,
+                label: "Buyer Name",
+                icon: Icons.person,
+              ),
+              _buildTextField(
+                controller: buyerAddressController,
+                label: "Buyer Address",
+                icon: Icons.home,
+              ),
+              _buildTextField(
+                controller: buyerContactController,
+                label: "Buyer Contact",
+                icon: Icons.phone,
+              ),
+            ]),
+            _buildSection("Payment Details", [
+              _buildTextField(
+                controller: paymentTypeController,
+                label: "Payment Type",
+                icon: Icons.payment,
+              ),
+              _buildTextField(
+                controller: accountDetailsController,
+                label: "Account Details",
+                icon: Icons.account_balance,
+              ),
+            ]),
+            _buildSection("Invoice Items", [
+              _buildTextField(
+                controller: itemNameController,
+                label: "Item Name",
+                icon: Icons.shopping_bag,
+              ),
+              _buildTextField(
+                controller: itemQuantityController,
+                label: "Quantity",
+                icon: Icons.format_list_numbered,
+              ),
+              _buildTextField(
+                controller: itemPriceController,
+                label: "Price",
+                icon: Icons.attach_money,
+              ),
+              ElevatedButton(onPressed: () {}, child: const Text("Add Item")),
+              ...items.map(
+                (item) => ListTile(
+                  title: Text("${item["name"]} - \$${item["price"]}"),
+                  subtitle: Text("Quantity: ${item["quantity"]}"),
+                ),
+              ),
+            ]),
+            const SizedBox(height: 20),
+            ElevatedButton.icon(
+              onPressed: () {},
+              icon: const Icon(Icons.picture_as_pdf),
+              label: const Text("Generate Invoice"),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.green,
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 20,
+                  vertical: 12,
+                ),
+                textStyle: const TextStyle(fontSize: 16),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildSection(String title, List<Widget> children) {
+    return Card(
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+      elevation: 5,
+      margin: const EdgeInsets.symmetric(vertical: 10),
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              title,
+              style: const TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+                color: Colors.blueAccent,
+              ),
+            ),
+            const SizedBox(height: 10),
+            ...children,
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildTextField({
+    required TextEditingController controller,
+    required String label,
+    required IconData icon,
+  }) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8),
+      child: TextField(
+        controller: controller,
+        decoration: InputDecoration(
+          labelText: label,
+          prefixIcon: Icon(icon, color: Colors.blueAccent),
+          border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
+          filled: true,
+          fillColor: Colors.white,
+        ),
+      ),
+    );
+  }
+
+  double _calculateTotal() {
+    return items.fold(0, (sum, item) {
+      double price = double.tryParse(item["price"] ?? "0") ?? 0;
+      int quantity = int.tryParse(item["quantity"] ?? "0") ?? 0;
+      return sum + (price * quantity);
+    });
+  }
+}
