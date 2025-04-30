@@ -45,7 +45,7 @@ class Quatation extends StatelessWidget {
             SizedBox(height: 8.h),
             GestureDetector(
               onTap: () {
-                Get.toNamed(Routes.form_customers);
+                //    Get.toNamed(Routes.form_customers);
               },
               child: Container(
                 width: double.infinity,
@@ -76,7 +76,7 @@ class Quatation extends StatelessWidget {
             SizedBox(height: 10.h),
             GestureDetector(
               onTap: () {
-                Get.toNamed(Routes.product);
+                //Get.toNamed(Routes.product);
               },
               child: Container(
                 width: double.infinity,
@@ -503,7 +503,10 @@ class Quatation extends StatelessWidget {
                   ),
                 ),
                 Container(
-                  padding: EdgeInsets.symmetric(horizontal: 12.w),
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 12.w,
+                    vertical: 10.h,
+                  ),
                   decoration: BoxDecoration(
                     color: grey900,
                     borderRadius: BorderRadius.vertical(
@@ -529,7 +532,13 @@ class Quatation extends StatelessWidget {
                             labelStyle: TextStyle(color: white70),
                             filled: true,
                             fillColor: Colors.transparent,
-                            contentPadding: EdgeInsets.symmetric(vertical: 8),
+                            isDense: true,
+                            contentPadding: EdgeInsets.symmetric(
+                              vertical: 10.h,
+                            ),
+                            border: UnderlineInputBorder(
+                              borderSide: BorderSide(color: Colors.white24),
+                            ),
                             enabledBorder: UnderlineInputBorder(
                               borderSide: BorderSide(color: Colors.white24),
                             ),
@@ -537,8 +546,7 @@ class Quatation extends StatelessWidget {
                               borderSide: BorderSide(color: white),
                             ),
                           ),
-                          style: TextStyle(color: white),
-                          onSubmitted: (value) {},
+                          style: TextStyle(color: white, fontSize: 14.sp),
                         ),
                       ),
                     ],

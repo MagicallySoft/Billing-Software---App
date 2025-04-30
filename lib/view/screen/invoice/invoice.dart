@@ -479,7 +479,10 @@ class _InvoiceState extends State<Invoice> {
                   );
                 }),
                 Container(
-                  padding: EdgeInsets.symmetric(horizontal: 12.w),
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 12.w,
+                    vertical: 10.h,
+                  ),
                   decoration: BoxDecoration(
                     color: grey900,
                     borderRadius: BorderRadius.vertical(
@@ -506,7 +509,13 @@ class _InvoiceState extends State<Invoice> {
                             labelStyle: TextStyle(color: white70),
                             filled: true,
                             fillColor: Colors.transparent,
-                            contentPadding: EdgeInsets.symmetric(vertical: 8),
+                            isDense: true, // Reduces the height
+                            contentPadding: EdgeInsets.symmetric(
+                              vertical: 10.h,
+                            ),
+                            border: UnderlineInputBorder(
+                              borderSide: BorderSide(color: Colors.white24),
+                            ),
                             enabledBorder: UnderlineInputBorder(
                               borderSide: BorderSide(color: Colors.white24),
                             ),
@@ -514,7 +523,7 @@ class _InvoiceState extends State<Invoice> {
                               borderSide: BorderSide(color: white),
                             ),
                           ),
-                          style: TextStyle(color: white),
+                          style: TextStyle(color: white, fontSize: 14.sp),
                         ),
                       ),
                     ],

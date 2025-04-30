@@ -17,6 +17,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     var login = Get.put(LoginController());
+    String userDisplayName = login.getCurrentUserName();
     return PopScope(
       canPop: false,
       onPopInvokedWithResult: (didPop, result) async {
@@ -28,12 +29,19 @@ class _HomeScreenState extends State<HomeScreen> {
         }
       },
       child: Scaffold(
+        backgroundColor: Color(0xFF1E1E2C),
         drawer: Drawer(
           child: ListView(
             padding: EdgeInsets.zero,
             children: [
               DrawerHeader(
-                decoration: BoxDecoration(color: Colors.blue),
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    colors: [Colors.blue, Colors.lightBlueAccent],
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                  ),
+                ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -45,7 +53,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                     const SizedBox(height: 10),
                     Text(
-                      'Hello, User!',
+                      'Hello, $userDisplayName',
                       style: TextStyle(color: Colors.white, fontSize: 20),
                     ),
                   ],
@@ -53,27 +61,42 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               ListTile(
                 leading: Icon(Icons.home, color: Colors.blueAccent),
-                title: Text('Home'),
+                title: Text(
+                  'Home',
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
                 onTap: () {},
               ),
               ListTile(
                 leading: Icon(Icons.person, color: Colors.deepPurple),
-                title: Text('Profile'),
+                title: Text(
+                  'Profile',
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
                 onTap: () {},
               ),
               ListTile(
                 leading: Icon(Icons.settings, color: Colors.orange),
-                title: Text('Settings'),
+                title: Text(
+                  'Settings',
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
                 onTap: () {},
               ),
               ListTile(
                 leading: Icon(Icons.info, color: Colors.green),
-                title: Text('About'),
+                title: Text(
+                  'About',
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
                 onTap: () {},
               ),
               ListTile(
                 leading: Icon(Icons.logout, color: Colors.red),
-                title: Text('Logout'),
+                title: Text(
+                  'Logout',
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
                 onTap: () {
                   login.logoutUser();
                   Get.offNamed(Routes.login);
@@ -82,7 +105,6 @@ class _HomeScreenState extends State<HomeScreen> {
             ],
           ),
         ),
-        backgroundColor: Color(0xFF1E1E2C),
         appBar: AppBar(
           iconTheme: IconThemeData(color: white),
           backgroundColor: Color(0xFF292A3A),
