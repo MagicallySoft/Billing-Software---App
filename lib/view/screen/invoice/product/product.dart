@@ -138,13 +138,14 @@ class _ProductState extends State<Product> {
                               },
                               icon: Icon(Icons.add, color: Colors.white),
                             ),
-                            // IconButton(
-                            //   onPressed: () {
-                            //     log("edit called");
-                            //     controller.editProduct(index);
-                            //   },
-                            //   icon: Icon(Icons.edit),
-                            // ),
+                            IconButton(
+                              onPressed: () {
+                                log("edit called");
+                                Get.toNamed(Routes.product_add);
+                                controller.editProduct(index);
+                              },
+                              icon: Icon(Icons.edit, color: Colors.white),
+                            ),
                           ],
                         ),
                       ),
