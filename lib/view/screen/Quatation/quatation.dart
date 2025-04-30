@@ -566,7 +566,6 @@ class Quatation extends StatelessWidget {
                     icon: Icon(Icons.print, color: white),
                     onPressed: () async {
                       controllerQuotation.QuatationDataAdd();
-
                       controllerQuotation.QuatationPdf();
                     },
                   ),
