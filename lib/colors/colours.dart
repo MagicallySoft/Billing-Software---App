@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+//colors
 Color white = Colors.white;
 Color black = Colors.black;
 Color blue = Colors.blueAccent;

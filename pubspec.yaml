@@ -58,6 +58,7 @@ dependencies:
   http: ^1.3.0
   searchfield: ^1.2.6
   image_picker: ^1.0.4
+  flutter_dotenv: ^5.2.1
 
 
 
@@ -100,6 +101,7 @@ flutter:
     - assets/photos/pavlovvisuals-removebg-preview.png
     - assets/photos/intro_2.png
     - assets/photos/intro_3.png
+    - .env
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

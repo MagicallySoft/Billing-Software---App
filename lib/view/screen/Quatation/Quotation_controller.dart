@@ -1,7 +1,14 @@
+import 'dart:developer';
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:invoice_generator/view/screen/Quatation/quatation.dart';
+import 'package:pdf/pdf.dart';
+import 'package:pdf/widgets.dart' as pw;
+import 'package:printing/printing.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:share_plus/share_plus.dart';
 
 class QuotationController extends GetxController {
   Rx<DateTime?> QuotationdueDate = Rx<DateTime?>(null);
@@ -30,6 +37,7 @@ class QuotationController extends GetxController {
   TextEditingController bankName = TextEditingController();
   TextEditingController acc = TextEditingController();
   TextEditingController ifsc = TextEditingController();
+
   late XFile? image;
 
   QuatationDataAdd() {
@@ -48,6 +56,7 @@ class QuotationController extends GetxController {
         'signature': signature.value,
         'paymentMethod': paymentMethod.value,
         'paymentTerms': paymentTerms.value,
+        'dueDate': QuotationdueDate.value?.toString(),
       });
     }
   }
@@ -92,6 +101,385 @@ class QuotationController extends GetxController {
     if (image != null) {
       signature.value = image;
     }
+  }
+
+  Future<void> QuatationPdf() async {
+    final pdf = pw.Document();
+    pdf.addPage(
+      pw.MultiPage(
+        pageFormat: PdfPageFormat.a4,
+        margin: pw.EdgeInsets.all(32),
+        build:
+            (context) => [
+              pw.Container(
+                padding: pw.EdgeInsets.symmetric(horizontal: 20, vertical: 30),
+                decoration: pw.BoxDecoration(
+                  border: pw.Border(
+                    bottom: pw.BorderSide(color: PdfColors.grey300, width: 1),
+                  ),
+                ),
+                child: pw.Row(
+                  mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: pw.CrossAxisAlignment.start,
+                  children: [
+                    pw.Row(
+                      crossAxisAlignment: pw.CrossAxisAlignment.end,
+                      children: [
+                        pw.Text(
+                          "Quotation",
+                          style: pw.TextStyle(
+                            fontSize: 28,
+                            fontWeight: pw.FontWeight.bold,
+                            color: PdfColors.blue800,
+                          ),
+                        ),
+                        pw.SizedBox(width: 5),
+                        pw.Row(
+                          children: [
+                            pw.Text(
+                              'EST-0001',
+                              style: pw.TextStyle(
+                                fontSize: 12,
+                                color: PdfColors.grey600,
+                              ),
+                            ),
+                          ],
+                        ),
+                        pw.SizedBox(width: 150),
+                        pw.SizedBox(height: 10),
+                        pw.Column(
+                          crossAxisAlignment: pw.CrossAxisAlignment.start,
+                          children: [
+                            pw.Text(
+                              "",
+                              style: pw.TextStyle(
+                                fontSize: 12,
+                                color: PdfColors.black,
+                              ),
+                            ),
+                            pw.Text(
+                              "",
+                              style: pw.TextStyle(
+                                fontSize: 12,
+                                color: PdfColors.black,
+                              ),
+                            ),
+                            pw.Text(
+                              "",
+                              style: pw.TextStyle(
+                                fontSize: 12,
+                                color: PdfColors.black,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+              pw.SizedBox(height: 30),
+              pw.Row(
+                crossAxisAlignment: pw.CrossAxisAlignment.start,
+                children: [
+                  pw.Expanded(
+                    child: pw.Container(
+                      padding: pw.EdgeInsets.all(20),
+                      decoration: pw.BoxDecoration(
+                        color: PdfColors.grey100,
+                        borderRadius: pw.BorderRadius.circular(5),
+                      ),
+                      child: pw.Column(
+                        crossAxisAlignment: pw.CrossAxisAlignment.start,
+                        children: [
+                          pw.Text(
+                            "GST no : dfbdu53536f",
+                            style: pw.TextStyle(
+                              fontSize: 10,
+                              fontWeight: pw.FontWeight.bold,
+                              color: PdfColors.blueGrey800,
+                            ),
+                          ),
+                          pw.SizedBox(height: 10),
+                          pw.Text(
+                            "Bank detail ",
+                            style: pw.TextStyle(
+                              fontSize: 10,
+                              color: PdfColors.blueGrey800,
+                            ),
+                          ),
+                          pw.Text(
+                            "ACC no : 123456789",
+                            style: pw.TextStyle(
+                              fontSize: 10,
+                              color: PdfColors.blueGrey800,
+                            ),
+                          ),
+                          pw.SizedBox(height: 5),
+                          pw.Text(
+                            "Branch : Gujarat",
+                            style: pw.TextStyle(
+                              fontSize: 10,
+                              color: PdfColors.blueGrey800,
+                            ),
+                          ),
+                          pw.Text(
+                            "Date : ${DateTime.now().toString().split(' ')[0]}",
+                            style: pw.TextStyle(
+                              fontSize: 10,
+                              color: PdfColors.blueGrey800,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  pw.SizedBox(width: 20),
+                ],
+              ),
+              pw.SizedBox(height: 20),
+              pw.Text(
+                "To ",
+                style: pw.TextStyle(fontSize: 10, color: PdfColors.blueGrey800),
+              ),
+              pw.Text(
+                "Customer",
+                style: pw.TextStyle(fontSize: 14, color: PdfColors.blueGrey800),
+              ),
+              pw.SizedBox(height: 20),
+              pw.Container(
+                decoration: pw.BoxDecoration(
+                  borderRadius: pw.BorderRadius.circular(5),
+                  border: pw.Border.all(color: PdfColors.grey300),
+                ),
+                child: pw.Table(
+                  border: pw.TableBorder.symmetric(
+                    inside: pw.BorderSide(color: PdfColors.grey300),
+                  ),
+                  children: [
+                    pw.TableRow(
+                      decoration: pw.BoxDecoration(color: PdfColors.blue800),
+                      children:
+                          [
+                            "#",
+                            "ITEM NAME",
+                            "QTY",
+                            "PRICE/UNIT",
+                            "DISCOUNT",
+                            "AMOUNT",
+                          ].map((header) {
+                            return pw.Padding(
+                              padding: pw.EdgeInsets.all(10),
+                              child: pw.Text(
+                                header,
+                                style: pw.TextStyle(
+                                  color: PdfColors.white,
+                                  fontWeight: pw.FontWeight.bold,
+                                  fontSize: 10,
+                                ),
+                                textAlign: pw.TextAlign.center,
+                              ),
+                            );
+                          }).toList(),
+                    ),
+                    ...[
+                      [
+                        "1",
+                        "Back-end services",
+                        "80 hrs",
+                        " 2000.00",
+                        " 0.00",
+                        " 80,000.00",
+                      ],
+                    ].map((row) {
+                      return pw.TableRow(
+                        children:
+                            row.map((data) {
+                              return pw.Padding(
+                                padding: pw.EdgeInsets.all(10),
+                                child: pw.Text(
+                                  data,
+                                  style: pw.TextStyle(
+                                    fontSize: 10,
+                                    color: PdfColors.blueGrey800,
+                                  ),
+                                  textAlign: pw.TextAlign.center,
+                                ),
+                              );
+                            }).toList(),
+                      );
+                    }),
+                  ],
+                ),
+              ),
+              pw.SizedBox(height: 20),
+              // Total Section
+              pw.Container(
+                width: double.infinity,
+                padding: pw.EdgeInsets.all(20),
+                decoration: pw.BoxDecoration(
+                  color: PdfColors.grey100,
+                  borderRadius: pw.BorderRadius.circular(5),
+                ),
+                child: pw.Row(
+                  mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
+                  children: [
+                    pw.Column(
+                      crossAxisAlignment: pw.CrossAxisAlignment.start,
+                      children: [
+                        pw.Text(
+                          "Payment Details",
+                          style: pw.TextStyle(
+                            fontSize: 10,
+                            fontWeight: pw.FontWeight.bold,
+                            color: PdfColors.blueGrey800,
+                          ),
+                        ),
+                        pw.SizedBox(height: 10),
+                        pw.Text(
+                          "",
+                          style: pw.TextStyle(
+                            fontSize: 10,
+                            color: PdfColors.blueGrey800,
+                          ),
+                        ),
+                        pw.Text(
+                          "",
+                          style: pw.TextStyle(
+                            fontSize: 10,
+                            color: PdfColors.blueGrey800,
+                          ),
+                        ),
+                      ],
+                    ),
+                    pw.Column(
+                      crossAxisAlignment: pw.CrossAxisAlignment.end,
+                      children: [
+                        pw.Row(
+                          children: [
+                            pw.Text(
+                              "Subtotal:",
+                              style: pw.TextStyle(
+                                fontSize: 10,
+                                color: PdfColors.blueGrey800,
+                              ),
+                            ),
+                            pw.SizedBox(width: 50),
+                            pw.Text(
+                              " 80,000.00",
+                              style: pw.TextStyle(
+                                fontSize: 10,
+                                color: PdfColors.blueGrey800,
+                              ),
+                            ),
+                          ],
+                        ),
+                        pw.SizedBox(height: 5),
+                        pw.Row(
+                          children: [
+                            pw.Text(
+                              "GST (0%):",
+                              style: pw.TextStyle(
+                                fontSize: 10,
+                                color: PdfColors.blueGrey800,
+                              ),
+                            ),
+                            pw.SizedBox(width: 50),
+                            pw.Text(
+                              " 0.00",
+                              style: pw.TextStyle(
+                                fontSize: 10,
+                                color: PdfColors.blueGrey800,
+                              ),
+                            ),
+                          ],
+                        ),
+                        pw.SizedBox(height: 5),
+                        pw.Container(
+                          padding: pw.EdgeInsets.symmetric(vertical: 10),
+                          decoration: pw.BoxDecoration(
+                            border: pw.Border(
+                              top: pw.BorderSide(color: PdfColors.grey300),
+                            ),
+                          ),
+                          child: pw.Row(
+                            children: [
+                              pw.Text(
+                                "Total:",
+                                style: pw.TextStyle(
+                                  fontSize: 10,
+                                  fontWeight: pw.FontWeight.bold,
+                                  color: PdfColors.blueGrey800,
+                                ),
+                              ),
+                              pw.SizedBox(width: 50),
+                              pw.Text(
+                                " 1,20,000.00",
+                                style: pw.TextStyle(
+                                  fontSize: 14,
+                                  fontWeight: pw.FontWeight.bold,
+                                  color: PdfColors.blue800,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+              pw.SizedBox(height: 30),
+              pw.Container(
+                padding: pw.EdgeInsets.symmetric(vertical: 20),
+                decoration: pw.BoxDecoration(
+                  border: pw.Border(
+                    top: pw.BorderSide(color: PdfColors.grey300),
+                  ),
+                ),
+                child: pw.Row(
+                  mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
+                  children: [
+                    pw.Column(
+                      crossAxisAlignment: pw.CrossAxisAlignment.start,
+                      children: [
+                        pw.Text(
+                          "Terms & Conditions",
+                          style: pw.TextStyle(
+                            fontSize: 10,
+                            fontWeight: pw.FontWeight.bold,
+                            color: PdfColors.blueGrey800,
+                          ),
+                        ),
+                        pw.SizedBox(height: 5),
+                        pw.Text(
+                          "",
+                          style: pw.TextStyle(
+                            fontSize: 10,
+                            color: PdfColors.blueGrey800,
+                          ),
+                        ),
+                      ],
+                    ),
+                    pw.Row(
+                      mainAxisAlignment: pw.MainAxisAlignment.end,
+                      children: [
+                        // pw.Image(signatureImage, width: 100, height: 50),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ],
+      ),
+    );
+
+    final output = await getTemporaryDirectory();
+    final file = File("${output.path}/Quotation.pdf");
+    log("Path ${file.path}");
+    await file.writeAsBytes(await pdf.save());
+    await Printing.layoutPdf(onLayout: (format) => pdf.save());
+    await Share.shareXFiles([XFile(file.path)]);
   }
 
   Widget buildQuotationInfo(BuildContext context) {

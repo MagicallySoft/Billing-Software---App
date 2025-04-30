@@ -9,7 +9,6 @@ import 'package:invoice_generator/view/screen/bottom/more.dart';
 import 'package:invoice_generator/view/screen/bottom/parties.dart';
 import 'package:invoice_generator/view/screen/bottom/product.dart';
 import 'package:invoice_generator/view/screen/home.dart';
-
 import '../view/auth/login/login.dart';
 import '../view/screen/invoice/customers/add_customer.dart';
 import '../view/screen/invoice/customers/customer_form.dart';
@@ -46,7 +45,6 @@ class Routes {
     GetPage(name: intro_1, page: () => Intro1(), transition: Transition.fadeIn),
     GetPage(name: intro_2, page: () => Intro2(), transition: Transition.fadeIn),
     GetPage(name: intro_3, page: () => Intro3(), transition: Transition.fadeIn),
-
     GetPage(
       name: register,
       page: () => RegisterScreen(),

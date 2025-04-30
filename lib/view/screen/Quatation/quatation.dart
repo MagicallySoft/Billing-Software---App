@@ -1,12 +1,10 @@
 import 'dart:developer';
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:share_plus/share_plus.dart';
-
 import '../../../colors/colours.dart';
 import '../../../routes/routes.dart';
 import 'Quotation_controller.dart';
@@ -20,6 +18,8 @@ class Quatation extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: AppBar(
+        backgroundColor: black,
+        title: Text("Quotation", style: TextStyle(color: white)),
         leading: IconButton(
           onPressed: () {
             controllerQuotation.clearData();
@@ -27,8 +27,6 @@ class Quatation extends StatelessWidget {
           },
           icon: Icon(Icons.arrow_back_ios_new_rounded, color: white),
         ),
-        backgroundColor: black,
-        title: Text("Quotation", style: TextStyle(color: white)),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16),
@@ -420,7 +418,6 @@ class Quatation extends StatelessWidget {
                                       ),
                                     ),
                                     SizedBox(height: 20.h),
-
                                     Container(
                                       width: 200.w,
                                       height: 130.h,
@@ -567,18 +564,10 @@ class Quatation extends StatelessWidget {
                 children: [
                   IconButton(
                     icon: Icon(Icons.print, color: white),
-                    onPressed: () {
+                    onPressed: () async {
                       controllerQuotation.QuatationDataAdd();
-                      log(controllerQuotation.addressController.text);
-                      log(controllerQuotation.notesController.text);
-                      log(controllerQuotation.paymentMethod.value);
-                      log(controllerQuotation.termsController.text);
-                      log(controllerQuotation.dilivryController.text);
-                      log(controllerQuotation.pakageController.text);
-                      log(controllerQuotation.signature.value!.path);
-                      log(controllerQuotation.ifsc.text);
-                      log(controllerQuotation.acc.text);
-                      log(controllerQuotation.bankName.text);
+
+                      controllerQuotation.QuatationPdf();
                     },
                   ),
                 ],
