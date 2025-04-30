@@ -16,6 +16,7 @@ class ProductController extends GetxController {
 
   var selectedImages = <File>[].obs;
   int? editingIndex;
+  RxInt qty = 1.obs;
 
   RxString selectedType = "Product".obs;
 
@@ -30,20 +31,22 @@ class ProductController extends GetxController {
   TextEditingController description = TextEditingController();
   var productData = <Map<String, dynamic>>[].obs;
 
-  void submitData() {
-    productData.add({
-      'productId': generateProductId(),
-      'Product Name': productName.text,
-      'Selling Price': sellingPrice.text,
-      'Tax Rate': Tax.text,
-      'Purchase Price': purchaseRate.text,
-      'Unit': unitController.text,
-      'hsn': hsn.text,
-      'category': category.text,
-      'description': description.text,
-      'images': selectedImages.map((image) => image.path).join(','),
-    });
-  }
+  // void submitData() {
+  //   productData.add({
+  //     'productId': generateProductId(),
+  //     'Product Name': productName.text,
+  //     'Selling Price': sellingPrice.text,
+  //     'Tax Rate': Tax.text,
+  //     'Purchase Price': purchaseRate.text,
+  //     'Unit': unitController.text,
+  //     'hsn': hsn.text,
+  //     'category': category.text,
+  //     'description': description.text,
+  //     'quantity': qty.value,
+  //     'images': selectedImages.map((image) => image.path).join(','),
+  //   });
+  //   log("Product id ${productData[productData.length - 1]['productId']}");
+  // }
 
   String generateProductId() {
     final timestamp = DateTime.now().millisecondsSinceEpoch;
@@ -89,13 +92,15 @@ class ProductController extends GetxController {
       'category': category.text,
       'description': description.text,
       'images': selectedImages.map((image) => image.path).join(','),
+      'quantity': 1,
     };
 
-    log("Product id ${newData['productId']} ");
+    log("Product id ${newData['productId']}");
     if (editingIndex != null &&
         editingIndex! >= 0 &&
         editingIndex! < productData.length) {
       newData['productId'] = productData[editingIndex!]['productId'];
+      newData['quantity'] = productData[editingIndex!]['quantity'] ?? 1;
       productData[editingIndex!] = newData;
     } else {
       productData.add(newData);
@@ -103,6 +108,25 @@ class ProductController extends GetxController {
 
     editingIndex = null;
     clearFields();
+  }
+
+  void increaseQty(int index) {
+    if (index >= 0 && index < productData.length) {
+      final updatedProduct = Map<String, dynamic>.from(productData[index]);
+      updatedProduct['quantity'] = (updatedProduct['quantity'] ?? 0) + 1;
+      productData[index] = updatedProduct;
+    }
+  }
+
+  void decreaseQty(int index) {
+    if (index >= 0 && index < productData.length) {
+      final updatedProduct = Map<String, dynamic>.from(productData[index]);
+      int currentQty = updatedProduct['quantity'] ?? 0;
+      if (currentQty > 0) {
+        updatedProduct['quantity'] = currentQty - 1;
+        productData[index] = updatedProduct;
+      }
+    }
   }
 
   void editProduct(int index) {

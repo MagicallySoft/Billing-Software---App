@@ -29,14 +29,7 @@ class _CustomerFormState extends State<AllCustomers> {
             },
             icon: Icon(Icons.arrow_back_ios_new_rounded, color: white),
           ),
-          actions: [
-            IconButton(
-              icon: Icon(Icons.add, color: white),
-              onPressed: () {
-                Get.toNamed(Routes.Add_customers);
-              },
-            ),
-          ],
+
           title: Text(
             'Customers',
             style: TextStyle(
@@ -153,6 +146,33 @@ class _CustomerFormState extends State<AllCustomers> {
                 }),
               ),
             ],
+          ),
+        ),
+        bottomNavigationBar: Padding(
+          padding: EdgeInsets.only(
+            left: 16,
+            right: 16,
+            bottom: MediaQuery.of(context).viewInsets.bottom + 8,
+          ),
+          child: ElevatedButton(
+            onPressed: () {
+              Get.toNamed(Routes.Add_customers);
+            },
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.indigo,
+              padding: EdgeInsets.symmetric(vertical: 16),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(8),
+              ),
+            ),
+            child: Text(
+              "Add Customer",
+              style: lato(
+                fontSize: 16,
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
           ),
         ),
       ),

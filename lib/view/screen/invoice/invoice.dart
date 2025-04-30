@@ -218,12 +218,6 @@ class _InvoiceState extends State<Invoice> {
           },
           icon: Icon(Icons.arrow_back_ios_new_rounded, color: white),
         ),
-        actions: [
-          IconButton(
-            icon: Icon(Icons.picture_as_pdf, color: white),
-            onPressed: () {},
-          ),
-        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -373,13 +367,13 @@ class _InvoiceState extends State<Invoice> {
                       subtitle: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          (product["Selling Price"] == null)
+                          (product["quantity"] == null)
                               ? Text(
-                                "price",
+                                "1",
                                 style: TextStyle(color: white, fontSize: 14.sp),
                               )
                               : Text(
-                                "${product["Selling Price"]?.toString()}",
+                                "Quantity: ${product["quantity"]?.toString()}",
                                 style: TextStyle(color: white),
                               ),
                         ],

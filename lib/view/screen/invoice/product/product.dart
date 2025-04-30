@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -36,14 +37,6 @@ class _ProductState extends State<Product> {
             ),
           ),
           backgroundColor: Colors.black,
-          actions: [
-            IconButton(
-              icon: Icon(Icons.add, color: white),
-              onPressed: () {
-                Get.toNamed(Routes.product_add);
-              },
-            ),
-          ],
         ),
         body: Obx(() {
           return ListView.builder(
@@ -123,17 +116,37 @@ class _ProductState extends State<Product> {
                           ),
                         ],
                       ),
-                      trailing: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          IconButton(
-                            icon: const Icon(Icons.edit, color: Colors.white70),
-                            onPressed: () {
-                              controller.editProduct(index);
-                              Get.toNamed(Routes.product_add);
-                            },
-                          ),
-                        ],
+                      trailing: Obx(
+                        () => Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            IconButton(
+                              onPressed: () {
+                                controller.decreaseQty(index);
+                              },
+                              icon: Icon(Icons.remove, color: Colors.white),
+                            ),
+                            Text(
+                              controller.productData[index]['quantity']
+                                      ?.toString() ??
+                                  '0',
+                              style: TextStyle(color: Colors.white),
+                            ),
+                            IconButton(
+                              onPressed: () {
+                                controller.increaseQty(index);
+                              },
+                              icon: Icon(Icons.add, color: Colors.white),
+                            ),
+                            // IconButton(
+                            //   onPressed: () {
+                            //     log("edit called");
+                            //     controller.editProduct(index);
+                            //   },
+                            //   icon: Icon(Icons.edit),
+                            // ),
+                          ],
+                        ),
                       ),
                     ),
                   ),
@@ -142,6 +155,33 @@ class _ProductState extends State<Product> {
             },
           );
         }),
+        bottomNavigationBar: Padding(
+          padding: EdgeInsets.only(
+            left: 16,
+            right: 16,
+            bottom: MediaQuery.of(context).viewInsets.bottom + 8,
+          ),
+          child: ElevatedButton(
+            onPressed: () {
+              Get.toNamed(Routes.product_add);
+            },
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.indigo,
+              padding: EdgeInsets.symmetric(vertical: 16),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(8),
+              ),
+            ),
+            child: Text(
+              "Add Product",
+              style: lato(
+                fontSize: 16,
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+        ),
       ),
     );
   }
