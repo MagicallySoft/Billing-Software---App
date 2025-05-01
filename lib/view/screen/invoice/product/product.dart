@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:invoice_generator/view/screen/invoice/product/product_controller.dart';
 import '../../../../colors/colours.dart';
 import '../../../../routes/routes.dart';
@@ -37,6 +38,15 @@ class _ProductState extends State<Product> {
             ),
           ),
           backgroundColor: Colors.black,
+          actions: [
+            IconButton(
+              icon: const Icon(Icons.share, color: Colors.white),
+              onPressed: () {
+                final message = controller.generateAllProductShareMessage();
+                Share.share(message);
+              },
+            ),
+          ],
         ),
         body: Obx(() {
           return ListView.builder(
@@ -77,77 +87,121 @@ class _ProductState extends State<Product> {
                       borderRadius: BorderRadius.circular(15),
                     ),
                     margin: const EdgeInsets.only(bottom: 12),
-                    child: ListTile(
-                      contentPadding: const EdgeInsets.all(16),
-
-                      leading: ClipRRect(
-                        borderRadius: BorderRadius.circular(10),
-                        child:
-                            imagePath != null && File(imagePath).existsSync()
-                                ? Image.file(
-                                  File(imagePath),
-                                  width: 50,
-                                  height: 50,
-                                  fit: BoxFit.cover,
-                                )
-                                : Container(
-                                  width: 50,
-                                  height: 50,
-                                  color: Colors.grey,
-                                  child: const Icon(
-                                    Icons.image_not_supported,
-                                    color: Colors.white,
-                                  ),
-                                ),
-                      ),
-                      title: Text(
-                        product["Product Name"]?.toString() ?? "No Title",
-                        style: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 18,
-                        ),
-                      ),
-                      subtitle: Column(
+                    child: Padding(
+                      padding: const EdgeInsets.all(16),
+                      child: Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
-                            product["Selling Price"]?.toString() ?? "No Price",
-                            style: const TextStyle(color: Colors.white70),
+                          /// Product Image
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(10),
+                            child:
+                                imagePath != null &&
+                                        File(imagePath).existsSync()
+                                    ? Image.file(
+                                      File(imagePath),
+                                      width: 50,
+                                      height: 50,
+                                      fit: BoxFit.cover,
+                                    )
+                                    : Container(
+                                      width: 50,
+                                      height: 50,
+                                      color: Colors.grey,
+                                      child: const Icon(
+                                        Icons.image_not_supported,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                          ),
+                          const SizedBox(width: 12),
+
+                          /// Details + Actions
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                /// Product Info
+                                Text(
+                                  product["Product Name"]?.toString() ??
+                                      "No Title",
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                const SizedBox(height: 4),
+                                Text(
+                                  "₹ ${product["Selling Price"]?.toString() ?? "No Price"}",
+                                  style: TextStyle(
+                                    color: Colors.white70,
+                                    fontSize: 14,
+                                  ),
+                                ),
+                                const SizedBox(height: 8),
+
+                                /// Quantity Control
+                                Row(
+                                  children: [
+                                    IconButton(
+                                      onPressed:
+                                          () => controller.decreaseQty(index),
+                                      icon: const Icon(
+                                        Icons.remove_circle_outline,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                    Text(
+                                      controller.productData[index]['quantity']
+                                              ?.toString() ??
+                                          '1',
+                                      style: const TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 16,
+                                      ),
+                                    ),
+                                    IconButton(
+                                      onPressed:
+                                          () => controller.increaseQty(index),
+                                      icon: const Icon(
+                                        Icons.add_circle_outline,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+
+                                /// Action Buttons (Share + Edit)
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: [
+                                    TextButton.icon(
+                                      onPressed: () {
+                                        log("edit called");
+                                        Get.toNamed(Routes.product_add);
+                                        controller.editProduct(index);
+                                      },
+                                      icon: Icon(
+                                        Icons.edit,
+                                        size: 16,
+                                        color: blue,
+                                      ),
+                                      label: Text(
+                                        "Edit",
+                                        style: lato(
+                                          color: blue,
+                                          fontWeight: FontWeight.normal,
+                                          fontSize: 12.sp,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
                           ),
                         ],
-                      ),
-                      trailing: Obx(
-                        () => Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            IconButton(
-                              onPressed: () {
-                                controller.decreaseQty(index);
-                              },
-                              icon: Icon(Icons.remove, color: Colors.white),
-                            ),
-                            Text(
-                              controller.productData[index]['quantity']
-                                      ?.toString() ??
-                                  '0',
-                              style: TextStyle(color: Colors.white),
-                            ),
-                            IconButton(
-                              onPressed: () {
-                                controller.increaseQty(index);
-                              },
-                              icon: Icon(Icons.add, color: Colors.white),
-                            ),
-                            IconButton(
-                              onPressed: () {
-                                log("edit called");
-                                Get.toNamed(Routes.product_add);
-                                controller.editProduct(index);
-                              },
-                              icon: Icon(Icons.edit, color: Colors.white),
-                            ),
-                          ],
-                        ),
                       ),
                     ),
                   ),

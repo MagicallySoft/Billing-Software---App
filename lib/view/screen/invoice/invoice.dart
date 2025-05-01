@@ -648,7 +648,11 @@ class _InvoiceState extends State<Invoice> {
                       generateInvoicePDF(
                         controller: controller,
                         data: data,
-                        products: product,
+                        discount: "23",
+                        name: "Taksh",
+                        qty: "3",
+                        total: "4674",
+                        unit: "2",
                         signature: controller.signatureImage!,
                       );
                       controller.saveInvoiceData();
@@ -705,7 +709,11 @@ class _InvoiceState extends State<Invoice> {
   Future<void> generateInvoicePDF({
     required InvoiceController controller,
     required Map<String, dynamic> data,
-    required Map<String, dynamic> products,
+    required String name,
+    required String qty,
+    required String unit,
+    required String discount,
+    required String total,
     required File signature,
   }) async {
     final pdf = pw.Document();
@@ -970,14 +978,7 @@ class _InvoiceState extends State<Invoice> {
                           }).toList(),
                     ),
                     ...[
-                      [
-                        "1",
-                        "Back-end services",
-                        "80 hrs",
-                        " 2000.00",
-                        " 0.00",
-                        " 80,000.00",
-                      ],
+                      ["1", name, qty, unit, discount, total],
                     ].map((row) {
                       return pw.TableRow(
                         children:

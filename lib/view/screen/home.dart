@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:invoice_generator/controllers/log%20in.dart';
 import '../../colors/colours.dart';
 import '../../routes/routes.dart';
@@ -31,6 +32,7 @@ class _HomeScreenState extends State<HomeScreen> {
       child: Scaffold(
         backgroundColor: Color(0xFF1E1E2C),
         drawer: Drawer(
+          backgroundColor: black,
           child: ListView(
             padding: EdgeInsets.zero,
             children: [
@@ -51,10 +53,16 @@ class _HomeScreenState extends State<HomeScreen> {
                         'https://www.shareicon.net/data/512x512/2016/09/15/829466_man_512x512.png',
                       ),
                     ),
-                    const SizedBox(height: 10),
+                    Spacer(),
                     Text(
                       'Hello, $userDisplayName',
-                      style: TextStyle(color: Colors.white, fontSize: 20),
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 18.sp,
+                        overflow: TextOverflow.ellipsis,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: GoogleFonts.lato().fontFamily,
+                      ),
                     ),
                   ],
                 ),
@@ -63,39 +71,59 @@ class _HomeScreenState extends State<HomeScreen> {
                 leading: Icon(Icons.home, color: Colors.blueAccent),
                 title: Text(
                   'Home',
-                  style: TextStyle(fontWeight: FontWeight.bold),
+                  style: lato(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                    fontSize: 16.sp,
+                  ),
                 ),
                 onTap: () {},
               ),
               ListTile(
-                leading: Icon(Icons.person, color: Colors.deepPurple),
+                leading: Icon(Icons.person, color: Colors.blue),
                 title: Text(
                   'Profile',
-                  style: TextStyle(fontWeight: FontWeight.bold),
+                  style: lato(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                    fontSize: 16.sp,
+                  ),
                 ),
                 onTap: () {},
               ),
               ListTile(
-                leading: Icon(Icons.settings, color: Colors.orange),
+                leading: Icon(Icons.settings, color: Colors.blue),
                 title: Text(
                   'Settings',
-                  style: TextStyle(fontWeight: FontWeight.bold),
+                  style: lato(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                    fontSize: 16.sp,
+                  ),
                 ),
                 onTap: () {},
               ),
               ListTile(
-                leading: Icon(Icons.info, color: Colors.green),
+                leading: Icon(Icons.info, color: Colors.blue),
                 title: Text(
                   'About',
-                  style: TextStyle(fontWeight: FontWeight.bold),
+                  style: lato(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                    fontSize: 16.sp,
+                  ),
                 ),
                 onTap: () {},
               ),
               ListTile(
-                leading: Icon(Icons.logout, color: Colors.red),
+                leading: Icon(Icons.logout, color: Colors.blue),
                 title: Text(
                   'Logout',
-                  style: TextStyle(fontWeight: FontWeight.bold),
+                  style: lato(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                    fontSize: 16.sp,
+                  ),
                 ),
                 onTap: () {
                   login.logoutUser();

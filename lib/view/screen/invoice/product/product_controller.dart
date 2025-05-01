@@ -30,6 +30,7 @@ class ProductController extends GetxController {
 
   TextEditingController description = TextEditingController();
   var productData = <Map<String, dynamic>>[].obs;
+  RxString id = "".obs;
 
   // void submitData() {
   //   productData.add({
@@ -48,9 +49,10 @@ class ProductController extends GetxController {
   //   log("Product id ${productData[productData.length - 1]['productId']}");
   // }
 
-  String generateProductId() {
+  void generateProductId() {
     final timestamp = DateTime.now().millisecondsSinceEpoch;
-    return 'PRD-$timestamp';
+    id = 'PRD-$timestamp'.obs;
+    update();
   }
 
   void clearFields() {
@@ -82,7 +84,7 @@ class ProductController extends GetxController {
 
   void addProduct() {
     final newData = {
-      'productId': generateProductId(),
+      'productId': id.value,
       'Product Name': productName.text,
       'Selling Price': sellingPrice.text,
       'Tax Rate': Tax.text,
@@ -132,7 +134,6 @@ class ProductController extends GetxController {
   void editProduct(int index) {
     if (index >= 0 && index < productData.length) {
       editingIndex = index;
-
       final product = productData[index];
       productName.text = product['Product Name'] ?? '';
       sellingPrice.text = product['Selling Price'] ?? '';
@@ -156,5 +157,21 @@ class ProductController extends GetxController {
     if (index >= 0 && index < productData.length) {
       productData.removeAt(index);
     }
+  }
+
+  String generateAllProductShareMessage() {
+    if (productData.isEmpty) return "📦 No products to share.";
+
+    return productData
+            .map((product) {
+              return """
+🆔 ID: ${product['productId'] ?? 'N/A'}
+📦 Name: ${product['Product Name'] ?? 'N/A'}
+💰 Price: ₹${product['Selling Price'] ?? 'N/A'}
+🔢 Quantity: ${product['quantity'] ?? 1}
+""";
+            })
+            .join('\n-----------------------\n') +
+        "\n\n🧾 Shared via Invoice Generator 📲";
   }
 }
