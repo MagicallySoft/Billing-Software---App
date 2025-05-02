@@ -118,83 +118,92 @@ class _ProductState extends State<Product> {
 
                           /// Details + Actions
                           Expanded(
-                            child: Column(
+                            child: Row(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                /// Product Info
-                                Text(
-                                  product["Product Name"]?.toString() ??
-                                      "No Title",
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                                const SizedBox(height: 4),
-                                Text(
-                                  "₹ ${product["Selling Price"]?.toString() ?? "No Price"}",
-                                  style: TextStyle(
-                                    color: Colors.white70,
-                                    fontSize: 14,
-                                  ),
-                                ),
-                                const SizedBox(height: 8),
-
-                                /// Quantity Control
-                                Row(
+                                Column(
                                   children: [
-                                    IconButton(
-                                      onPressed:
-                                          () => controller.decreaseQty(index),
-                                      icon: const Icon(
-                                        Icons.remove_circle_outline,
-                                        color: Colors.white,
-                                      ),
-                                    ),
                                     Text(
-                                      controller.productData[index]['quantity']
-                                              ?.toString() ??
-                                          '1',
-                                      style: const TextStyle(
+                                      product["Product Name"]?.toString() ??
+                                          "No Title",
+                                      style: TextStyle(
                                         color: Colors.white,
-                                        fontSize: 16,
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold,
                                       ),
                                     ),
-                                    IconButton(
-                                      onPressed:
-                                          () => controller.increaseQty(index),
-                                      icon: const Icon(
-                                        Icons.add_circle_outline,
-                                        color: Colors.white,
+                                    const SizedBox(height: 4),
+                                    Text(
+                                      "₹ ${product["Selling Price"]?.toString() ?? "No Price"}",
+                                      style: TextStyle(
+                                        color: Colors.white70,
+                                        fontSize: 14,
                                       ),
                                     ),
+                                    const SizedBox(height: 8),
                                   ],
                                 ),
-
-                                /// Action Buttons (Share + Edit)
-                                Row(
+                                Spacer(),
+                                Column(
                                   mainAxisAlignment: MainAxisAlignment.end,
                                   children: [
-                                    TextButton.icon(
-                                      onPressed: () {
-                                        log("edit called");
-                                        Get.toNamed(Routes.product_add);
-                                        controller.editProduct(index);
-                                      },
-                                      icon: Icon(
-                                        Icons.edit,
-                                        size: 16,
-                                        color: blue,
-                                      ),
-                                      label: Text(
-                                        "Edit",
-                                        style: lato(
-                                          color: blue,
-                                          fontWeight: FontWeight.normal,
-                                          fontSize: 12.sp,
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.end,
+                                      children: [
+                                        IconButton(
+                                          onPressed:
+                                              () =>
+                                                  controller.decreaseQty(index),
+                                          icon: const Icon(
+                                            Icons.remove_circle_outline,
+                                            color: Colors.white,
+                                          ),
                                         ),
-                                      ),
+                                        Text(
+                                          controller
+                                                  .productData[index]['quantity']
+                                                  ?.toString() ??
+                                              '1',
+                                          style: const TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 16,
+                                          ),
+                                        ),
+                                        IconButton(
+                                          onPressed:
+                                              () =>
+                                                  controller.increaseQty(index),
+                                          icon: const Icon(
+                                            Icons.add_circle_outline,
+                                            color: Colors.white,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.end,
+                                      children: [
+                                        TextButton.icon(
+                                          onPressed: () {
+                                            log("edit called");
+                                            Get.toNamed(Routes.product_add);
+                                            controller.editProduct(index);
+                                          },
+                                          icon: Icon(
+                                            Icons.edit,
+                                            size: 16,
+                                            color: blue,
+                                          ),
+                                          label: Text(
+                                            "Edit",
+                                            style: lato(
+                                              color: blue,
+                                              fontWeight: FontWeight.normal,
+                                              fontSize: 12.sp,
+                                            ),
+                                          ),
+                                        ),
+                                      ],
                                     ),
                                   ],
                                 ),

@@ -17,6 +17,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
+    int selectedIndex = 0;
     var login = Get.put(LoginController());
     String userDisplayName = login.getCurrentUserName();
     return PopScope(
@@ -646,49 +647,50 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
         bottomNavigationBar: BottomNavigationBar(
+          currentIndex: selectedIndex,
+          onTap: (index) {
+            selectedIndex = index;
+
+            switch (index) {
+              case 0:
+                break;
+              case 1:
+                Get.toNamed(Routes.bills);
+                break;
+              case 2:
+                Get.toNamed(Routes.products);
+                break;
+              case 3:
+                Get.toNamed(Routes.parties);
+                break;
+              case 4:
+                Get.toNamed(Routes.more);
+                break;
+            }
+          },
           backgroundColor: Color(0xFF292A3A),
           selectedItemColor: Colors.greenAccent,
           unselectedItemColor: Colors.grey,
           type: BottomNavigationBarType.fixed,
           items: [
             BottomNavigationBarItem(
-              icon: GestureDetector(child: Icon(Icons.home_outlined)),
+              icon: Icon(Icons.home_outlined),
               label: "Home",
             ),
             BottomNavigationBarItem(
-              icon: GestureDetector(
-                onTap: () {
-                  Get.toNamed(Routes.bills);
-                },
-                child: Icon(Icons.receipt_outlined),
-              ),
+              icon: Icon(Icons.receipt_outlined),
               label: "Bills",
             ),
             BottomNavigationBarItem(
-              icon: GestureDetector(
-                onTap: () {
-                  Get.toNamed(Routes.products);
-                },
-                child: Icon(Icons.shopping_cart_outlined),
-              ),
+              icon: Icon(Icons.shopping_cart_outlined),
               label: "Products",
             ),
             BottomNavigationBarItem(
-              icon: GestureDetector(
-                onTap: () {
-                  Get.toNamed(Routes.parties);
-                },
-                child: Icon(Icons.people_outline),
-              ),
+              icon: Icon(Icons.people_outline),
               label: "Parties",
             ),
             BottomNavigationBarItem(
-              icon: GestureDetector(
-                onTap: () {
-                  Get.toNamed(Routes.more);
-                },
-                child: Icon(Icons.more_horiz_outlined),
-              ),
+              icon: Icon(Icons.more_horiz_outlined),
               label: "More",
             ),
           ],

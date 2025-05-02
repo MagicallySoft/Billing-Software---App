@@ -4,12 +4,16 @@ import 'package:invoice_generator/view/intro/intro_1.dart';
 import 'package:invoice_generator/view/intro/intro_2.dart';
 import 'package:invoice_generator/view/intro/intro_3.dart';
 import 'package:invoice_generator/view/screen/Quatation/quatation.dart';
+import 'package:invoice_generator/view/screen/bottom/Company_detail/company.dart';
 import 'package:invoice_generator/view/screen/bottom/bills.dart';
 import 'package:invoice_generator/view/screen/bottom/more.dart';
 import 'package:invoice_generator/view/screen/bottom/parties.dart';
 import 'package:invoice_generator/view/screen/bottom/product.dart';
+import 'package:invoice_generator/view/screen/bottom/signature/add_signature.dart';
+import 'package:invoice_generator/view/screen/bottom/user_profile/user_profile.dart';
 import 'package:invoice_generator/view/screen/home.dart';
 import '../view/auth/login/login.dart';
+import '../view/screen/bottom/signature/signature.dart';
 import '../view/screen/invoice/customers/add_customer.dart';
 import '../view/screen/invoice/customers/customer_form.dart';
 import '../view/screen/invoice/invoice.dart';
@@ -35,6 +39,10 @@ class Routes {
   static const String parties = "/parties";
   static const String more = "/more";
   static const String quatation = "/quatation";
+  static const String company_detail = "/company_detail";
+  static const String user_profile = "/user_profile";
+  static const String signature = "/signature";
+  static const String signature_add = "/signature_add";
 
   static List<GetPage> pages = [
     GetPage(
@@ -100,6 +108,26 @@ class Routes {
     GetPage(
       name: quatation,
       page: () => Quatation(),
+      transition: Transition.fadeIn,
+    ),
+    GetPage(
+      name: company_detail,
+      page: () => CompanyDetail(),
+      transition: Transition.fadeIn,
+    ),
+    GetPage(
+      name: user_profile,
+      page: () => UserProfile(),
+      transition: Transition.fadeIn,
+    ),
+    GetPage(
+      name: signature,
+      page: () => SignatureScreen(),
+      transition: Transition.fadeIn,
+    ),
+    GetPage(
+      name: signature_add,
+      page: () => AddSignature(),
       transition: Transition.fadeIn,
     ),
   ];

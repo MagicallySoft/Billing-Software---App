@@ -19,6 +19,7 @@ class ProductController extends GetxController {
   RxInt qty = 1.obs;
 
   RxString selectedType = "Product".obs;
+  var selectedProductIndices = <int>[].obs; // Track selected product indices
 
   final TextEditingController unitController = TextEditingController();
   TextEditingController productName = TextEditingController();
