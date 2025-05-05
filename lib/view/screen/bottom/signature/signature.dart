@@ -1,21 +1,18 @@
 import 'dart:developer';
-import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:invoice_generator/view/screen/bottom/signature/signature%20controller.dart';
 import '../../../../colors/colours.dart';
-import '../../../../routes/routes.dart';
 
 class SignatureScreen extends StatelessWidget {
   const SignatureScreen({super.key});
-
   @override
   Widget build(BuildContext context) {
     final SignatureControllerX signatureController = Get.put(
       SignatureControllerX(),
     );
-
     return Scaffold(
       backgroundColor: black,
       appBar: AppBar(

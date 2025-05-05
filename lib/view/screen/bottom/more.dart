@@ -160,7 +160,9 @@ class More extends StatelessWidget {
                         color: Colors.white,
                         size: 16,
                       ),
-                      onTap: () {},
+                      onTap: () {
+                        Get.toNamed(Routes.notes_terms);
+                      },
                     ),
                   ],
                 ),
