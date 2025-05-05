@@ -1,34 +1,56 @@
+import 'dart:developer';
+import 'dart:io';
 import 'package:get/get.dart';
-import 'package:signature/signature.dart';
-import 'dart:typed_data';
-import '../../../../colors/colours.dart' as AppColors;
+import 'package:image_picker/image_picker.dart';
+import 'package:flutter/material.dart';
 
 class SignatureControllerX extends GetxController {
-  final SignatureController Signaturecontroller = SignatureController(
-    penStrokeWidth: 3,
-    penColor: AppColors.white,
-  );
+  var galleryImages = <File>[].obs;
 
-  Rx<Uint8List?> signature = Rx<Uint8List?>(null);
+  var defaultImageIndex = RxnInt();
 
-  void saveSignature() async {
-    final sig = await Signaturecontroller.toPngBytes();
-    if (sig != null && sig.isNotEmpty) {
-      signature.value = sig;
-      Get.snackbar('Success', 'Signature saved!');
-    } else {
-      Get.snackbar('Error', 'No signature detected.');
+  Future<void> pickImageFromGallery() async {
+    try {
+      final ImagePicker _picker = ImagePicker();
+      final List<XFile>? pickedFiles = await _picker.pickMultiImage();
+      if (pickedFiles != null && pickedFiles.isNotEmpty) {
+        for (var pickedFile in pickedFiles) {
+          File imageFile = File(pickedFile.path);
+          galleryImages.add(imageFile);
+        }
+        if (defaultImageIndex.value == null && galleryImages.isNotEmpty) {
+          defaultImageIndex.value = 0;
+        }
+      }
+    } catch (e) {
+      print("Error picking image: $e");
     }
   }
 
-  void clearSignature() {
-    Signaturecontroller.clear();
-    signature.value = null;
+  void removeImage(int index) {
+    if (index >= 0 && index < galleryImages.length) {
+      galleryImages.removeAt(index);
+
+      if (defaultImageIndex.value == index) {
+        defaultImageIndex.value = null;
+      } else if (defaultImageIndex.value != null &&
+          defaultImageIndex.value! > index) {
+        defaultImageIndex.value = defaultImageIndex.value! - 1;
+      }
+    }
   }
 
-  @override
-  void onClose() {
-    Signaturecontroller.dispose();
-    super.onClose();
+  void setDefaultImage(int index) {
+    if (index >= 0 && index < galleryImages.length) {
+      defaultImageIndex.value = index;
+    }
+  }
+
+  File? get defaultImage {
+    if (defaultImageIndex.value != null &&
+        defaultImageIndex.value! < galleryImages.length) {
+      return galleryImages[defaultImageIndex.value!];
+    }
+    return null;
   }
 }

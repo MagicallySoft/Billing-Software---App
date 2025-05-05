@@ -36,7 +36,7 @@ dependencies:
 
   pdf: ^3.11.3
   printing: ^5.14.2
-  signature: ^6.0.0
+
   path_provider: ^2.1.5
   share_plus: ^7.0.2
   carousel_slider: ^5.0.0

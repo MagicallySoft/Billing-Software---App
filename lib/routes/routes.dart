@@ -9,7 +9,7 @@ import 'package:invoice_generator/view/screen/bottom/bills.dart';
 import 'package:invoice_generator/view/screen/bottom/more.dart';
 import 'package:invoice_generator/view/screen/bottom/parties.dart';
 import 'package:invoice_generator/view/screen/bottom/product.dart';
-import 'package:invoice_generator/view/screen/bottom/signature/add_signature.dart';
+
 import 'package:invoice_generator/view/screen/bottom/user_profile/user_profile.dart';
 import 'package:invoice_generator/view/screen/home.dart';
 import '../view/auth/login/login.dart';
@@ -42,7 +42,6 @@ class Routes {
   static const String company_detail = "/company_detail";
   static const String user_profile = "/user_profile";
   static const String signature = "/signature";
-  static const String signature_add = "/signature_add";
 
   static List<GetPage> pages = [
     GetPage(
@@ -123,11 +122,6 @@ class Routes {
     GetPage(
       name: signature,
       page: () => SignatureScreen(),
-      transition: Transition.fadeIn,
-    ),
-    GetPage(
-      name: signature_add,
-      page: () => AddSignature(),
       transition: Transition.fadeIn,
     ),
   ];
