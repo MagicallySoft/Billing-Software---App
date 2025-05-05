@@ -5,6 +5,8 @@ import 'package:invoice_generator/view/intro/intro_2.dart';
 import 'package:invoice_generator/view/intro/intro_3.dart';
 import 'package:invoice_generator/view/screen/Quatation/quatation.dart';
 import 'package:invoice_generator/view/screen/bottom/Company_detail/company.dart';
+import 'package:invoice_generator/view/screen/bottom/bank/add_account.dart';
+import 'package:invoice_generator/view/screen/bottom/bank/bank.dart';
 import 'package:invoice_generator/view/screen/bottom/bills.dart';
 import 'package:invoice_generator/view/screen/bottom/more.dart';
 import 'package:invoice_generator/view/screen/bottom/notes/terms/notes_terms.dart';
@@ -44,6 +46,8 @@ class Routes {
   static const String user_profile = "/user_profile";
   static const String signature = "/signature";
   static const String notes_terms = "/notes_terms";
+  static const String bank = "/bank";
+  static const String add_bank_acc = "/add_bank_acc";
 
   static List<GetPage> pages = [
     GetPage(
@@ -129,6 +133,12 @@ class Routes {
     GetPage(
       name: notes_terms,
       page: () => NotesTerms(),
+      transition: Transition.fadeIn,
+    ),
+    GetPage(name: bank, page: () => Bank(), transition: Transition.fadeIn),
+    GetPage(
+      name: add_bank_acc,
+      page: () => AddAccount(),
       transition: Transition.fadeIn,
     ),
   ];

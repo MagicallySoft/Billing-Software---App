@@ -59,6 +59,8 @@ dependencies:
   searchfield: ^1.2.6
   image_picker: ^1.0.4
   flutter_dotenv: ^5.2.1
+  local_auth: ^2.3.0
+  shared_preferences: ^2.5.3
 
 
 

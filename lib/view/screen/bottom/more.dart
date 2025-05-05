@@ -121,7 +121,9 @@ class More extends StatelessWidget {
                         color: Colors.white,
                         size: 16,
                       ),
-                      onTap: () {},
+                      onTap: () {
+                        Get.toNamed(Routes.bank);
+                      },
                     ),
                     ListTile(
                       leading: Icon(Icons.edit_outlined, color: Colors.white),
