@@ -8,14 +8,19 @@ import 'package:invoice_generator/view/screen/bottom/Company_detail/company.dart
 import 'package:invoice_generator/view/screen/bottom/bank/add_account.dart';
 import 'package:invoice_generator/view/screen/bottom/bank/bank.dart';
 import 'package:invoice_generator/view/screen/bottom/bills.dart';
+import 'package:invoice_generator/view/screen/bottom/feedback/feedback.dart';
+import 'package:invoice_generator/view/screen/bottom/help/help.dart';
 import 'package:invoice_generator/view/screen/bottom/more.dart';
 import 'package:invoice_generator/view/screen/bottom/notes/terms/notes_terms.dart';
 import 'package:invoice_generator/view/screen/bottom/parties.dart';
 import 'package:invoice_generator/view/screen/bottom/product.dart';
+import 'package:invoice_generator/view/screen/bottom/tutorials/tutorial.dart';
 
 import 'package:invoice_generator/view/screen/bottom/user_profile/user_profile.dart';
+
 import 'package:invoice_generator/view/screen/home.dart';
 import '../view/auth/login/login.dart';
+import '../view/screen/bottom/faq/faq.dart';
 import '../view/screen/bottom/signature/signature.dart';
 import '../view/screen/invoice/customers/add_customer.dart';
 import '../view/screen/invoice/customers/customer_form.dart';
@@ -48,6 +53,10 @@ class Routes {
   static const String notes_terms = "/notes_terms";
   static const String bank = "/bank";
   static const String add_bank_acc = "/add_bank_acc";
+  static const String faq = "/faq";
+  static const String feedback = "/feedback";
+  static const String tutorial = "/tutorial";
+  static const String help = "/help";
 
   static List<GetPage> pages = [
     GetPage(
@@ -141,5 +150,17 @@ class Routes {
       page: () => AddAccount(),
       transition: Transition.fadeIn,
     ),
+    GetPage(name: faq, page: () => Faq(), transition: Transition.fadeIn),
+    GetPage(
+      name: feedback,
+      page: () => Feedback(),
+      transition: Transition.fadeIn,
+    ),
+    GetPage(
+      name: tutorial,
+      page: () => Tutorial(),
+      transition: Transition.fadeIn,
+    ),
+    GetPage(name: help, page: () => Help(), transition: Transition.fadeIn),
   ];
 }

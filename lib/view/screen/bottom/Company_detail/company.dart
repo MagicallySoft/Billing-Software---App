@@ -14,6 +14,7 @@ class CompanyDetail extends StatelessWidget {
     return Scaffold(
       backgroundColor: black,
       appBar: AppBar(
+        title: Text("Company Details", style: TextStyle(color: white)),
         backgroundColor: black,
         leading: IconButton(
           onPressed: () {
@@ -103,60 +104,71 @@ class CompanyDetail extends StatelessWidget {
                       ),
                     ),
                     SizedBox(height: 4.h),
-                    TextFormField(
-                      controller: controller.gstController,
-                      style: lato(
-                        color: white,
-                        fontWeight: FontWeight.w500,
-                        fontSize: 13.sp,
-                      ),
-                      decoration: InputDecoration(
-                        hintText: "Enter GST number",
-                        hintStyle: lato(
-                          color: white.withOpacity(0.6),
-                          fontSize: 13.sp,
-                          fontWeight: FontWeight.normal,
-                        ),
-                        filled: true,
-                        fillColor: Colors.grey.shade800,
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(8),
-                          borderSide: BorderSide.none,
-                        ),
-                        contentPadding: EdgeInsets.symmetric(
-                          horizontal: 12.w,
-                          vertical: 14.h,
-                        ),
-                        suffixIconConstraints: BoxConstraints(
-                          minHeight: 36.h,
-                          minWidth: 60.w,
-                        ),
-                        suffixIcon: Padding(
-                          padding: EdgeInsets.only(right: 6.w),
-                          child: GestureDetector(
-                            onTap: () {
-                              log("Fetch");
-                            },
-                            child: Container(
-                              width: 50.w,
-                              decoration: BoxDecoration(
-                                color: blue,
-                                borderRadius: BorderRadius.circular(6),
+                    Row(
+                      children: [
+                        Expanded(
+                          flex: 3,
+                          child: TextFormField(
+                            controller: controller.gstController,
+                            style: lato(
+                              color: white,
+                              fontWeight: FontWeight.w500,
+                              fontSize: 13.sp,
+                            ),
+                            decoration: InputDecoration(
+                              hintText: "Enter GST number",
+                              hintStyle: lato(
+                                color: white.withOpacity(0.6),
+                                fontSize: 13.sp,
+                                fontWeight: FontWeight.normal,
                               ),
-                              child: Center(
-                                child: Text(
-                                  "Fetch",
-                                  style: lato(
-                                    color: white,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 10.sp,
+                              filled: true,
+                              fillColor: Colors.grey.shade800,
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(8),
+                                borderSide: BorderSide.none,
+                              ),
+                              contentPadding: EdgeInsets.symmetric(
+                                horizontal: 12.w,
+                                vertical: 14.h,
+                              ),
+                              suffixIconConstraints: BoxConstraints(
+                                minHeight: 36.h,
+                                minWidth: 60.w,
+                              ),
+                            ),
+                          ),
+                        ),
+                        SizedBox(width: 10.w),
+                        Expanded(
+                          child: Padding(
+                            padding: EdgeInsets.only(right: 6.w),
+                            child: GestureDetector(
+                              onTap: () {
+                                log("Fetch");
+                              },
+                              child: Container(
+                                height: 45.h,
+                                width: 50.w,
+                                decoration: BoxDecoration(
+                                  color: blue,
+                                  borderRadius: BorderRadius.circular(6),
+                                ),
+                                child: Center(
+                                  child: Text(
+                                    "Fetch",
+                                    style: lato(
+                                      color: white,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 10.sp,
+                                    ),
                                   ),
                                 ),
                               ),
                             ),
                           ),
                         ),
-                      ),
+                      ],
                     ),
                     SizedBox(height: 8.h),
                     Text(
@@ -885,9 +897,13 @@ class CompanyDetail extends StatelessWidget {
         keyboardType: isNumber ? TextInputType.number : TextInputType.text,
         decoration: InputDecoration(
           labelText: label,
-          labelStyle: TextStyle(color: white),
+          labelStyle: TextStyle(color: white, fontSize: 14),
           filled: true,
           fillColor: Colors.transparent,
+          contentPadding: const EdgeInsets.symmetric(
+            horizontal: 12,
+            vertical: 10,
+          ),
           enabledBorder: OutlineInputBorder(
             borderSide: BorderSide(color: Colors.white24),
             borderRadius: BorderRadius.circular(8),
@@ -897,7 +913,7 @@ class CompanyDetail extends StatelessWidget {
             borderRadius: BorderRadius.circular(8),
           ),
         ),
-        style: TextStyle(color: white),
+        style: TextStyle(color: white, fontSize: 14),
       ),
     );
   }

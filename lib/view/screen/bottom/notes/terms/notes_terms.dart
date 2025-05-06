@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import '../../../../../colors/colours.dart';
 import 'note_controller.dart';
@@ -90,7 +91,7 @@ class NotesTerms extends StatelessWidget {
                           padding: MediaQuery.of(context).viewInsets,
                           child: Container(
                             padding: const EdgeInsets.all(16),
-                            height: 250,
+                            height: 250.h,
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
@@ -102,7 +103,7 @@ class NotesTerms extends StatelessWidget {
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
-                                const SizedBox(height: 16),
+                                SizedBox(height: 16.h),
                                 TextField(
                                   controller: textController,
                                   style: TextStyle(color: white),
@@ -116,7 +117,7 @@ class NotesTerms extends StatelessWidget {
                                     ),
                                   ),
                                 ),
-                                const Spacer(),
+                                SizedBox(height: 50.h),
                                 Align(
                                   alignment: Alignment.bottomRight,
                                   child: ElevatedButton(
@@ -125,18 +126,36 @@ class NotesTerms extends StatelessWidget {
                                         textController.text,
                                       );
                                       log(
-                                        '${item['title']} saved: ${textController.text}',
+                                        '${item['title']} terms saved: ${textController.text}',
                                       );
                                       Get.back();
                                       Get.snackbar(
                                         "Saved",
-                                        "Note for '${item['title']}' saved.",
+                                        "Terms for '${item['title']}' saved.",
                                         backgroundColor: Colors.green,
                                         colorText: Colors.white,
                                         snackPosition: SnackPosition.BOTTOM,
                                       );
                                     },
-                                    child: const Text("Save"),
+                                    style: ElevatedButton.styleFrom(
+                                      backgroundColor: Colors.indigo,
+                                      padding: EdgeInsets.symmetric(
+                                        vertical: 16,
+                                      ),
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(8),
+                                      ),
+                                    ),
+                                    child: Center(
+                                      child: Text(
+                                        "Add ${item['title']} Notes",
+                                        style: TextStyle(
+                                          fontSize: 14.sp,
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
                                   ),
                                 ),
                               ],
@@ -156,7 +175,7 @@ class NotesTerms extends StatelessWidget {
                     child: Row(
                       children: [
                         Icon(item['icon'], color: white),
-                        const SizedBox(width: 16),
+                        SizedBox(width: 16.w),
                         Text(
                           item['title'],
                           style: TextStyle(
@@ -176,7 +195,6 @@ class NotesTerms extends StatelessWidget {
               itemCount: notesList.length,
               itemBuilder: (context, index) {
                 final item = notesList[index];
-
                 TextEditingController getTermsController(String title) {
                   switch (title) {
                     case 'Invoice':
@@ -231,7 +249,7 @@ class NotesTerms extends StatelessWidget {
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
-                                const SizedBox(height: 16),
+                                const SizedBox(height: 20),
                                 TextField(
                                   controller: textController,
                                   style: TextStyle(color: white),
@@ -245,7 +263,7 @@ class NotesTerms extends StatelessWidget {
                                     ),
                                   ),
                                 ),
-                                const Spacer(),
+                                SizedBox(height: 30.h),
                                 Align(
                                   alignment: Alignment.bottomRight,
                                   child: ElevatedButton(
@@ -265,7 +283,25 @@ class NotesTerms extends StatelessWidget {
                                         snackPosition: SnackPosition.BOTTOM,
                                       );
                                     },
-                                    child: const Text("Save"),
+                                    style: ElevatedButton.styleFrom(
+                                      backgroundColor: Colors.indigo,
+                                      padding: EdgeInsets.symmetric(
+                                        vertical: 16,
+                                      ),
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(8),
+                                      ),
+                                    ),
+                                    child: Center(
+                                      child: Text(
+                                        "Add ${item['title']} Terms",
+                                        style: TextStyle(
+                                          fontSize: 14,
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
                                   ),
                                 ),
                               ],

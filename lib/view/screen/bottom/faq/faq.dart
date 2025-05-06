@@ -1,0 +1,110 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import '../../../../colors/colours.dart';
+
+class Faq extends StatelessWidget {
+  Faq({super.key});
+
+  final List<Map<String, String>> faqs = [
+    {
+      'question': 'What is this app used for?',
+      'answer':
+          'This app helps users manage their tasks efficiently and stay organized.',
+    },
+    {
+      'question': 'How do I reset my password?',
+      'answer': 'Go to settings, tap "Account", and choose "Reset Password".',
+    },
+    {
+      'question': 'Can I use the app offline?',
+      'answer':
+          'Yes, most features are available offline. Data syncs when you reconnect.',
+    },
+    {
+      'question': 'How do I contact support?',
+      'answer': 'Tap "Help & Support" in the menu to reach our support team.',
+    },
+    {
+      'question': 'Is my data secure?',
+      'answer':
+          'Yes, we use industry-standard encryption to protect your data.',
+    },
+    {
+      'question': 'What is this app used for?',
+      'answer':
+          'This app helps users manage their tasks efficiently and stay organized.',
+    },
+    {
+      'question': 'How do I reset my password?',
+      'answer': 'Go to settings, tap "Account", and choose "Reset Password".',
+    },
+    {
+      'question': 'Can I use the app offline?',
+      'answer':
+          'Yes, most features are available offline. Data syncs when you reconnect.',
+    },
+    {
+      'question': 'How do I contact support?',
+      'answer': 'Tap "Help & Support" in the menu to reach our support team.',
+    },
+    {
+      'question': 'Is my data secure?',
+      'answer':
+          'Yes, we use industry-standard encryption to protect your data.',
+    },
+    {
+      'question': 'How do I contact support?',
+      'answer': 'Tap "Help & Support" in the menu to reach our support team.',
+    },
+    {
+      'question': 'Is my data secure?',
+      'answer':
+          'Yes, we use industry-standard encryption to protect your data.',
+    },
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.black,
+      appBar: AppBar(
+        title: const Text('FAQs'),
+        backgroundColor: Colors.black,
+        foregroundColor: Colors.white,
+      ),
+      body: ListView.builder(
+        itemCount: faqs.length,
+        itemBuilder: (context, index) {
+          final faq = faqs[index];
+          return ExpansionTile(
+            tilePadding: const EdgeInsets.symmetric(horizontal: 16),
+            title: Text(
+              faq['question']!,
+              style: lato(
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+                fontSize: 16.sp,
+              ),
+            ),
+            iconColor: Colors.blue,
+            collapsedIconColor: Colors.white70,
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Text(
+                  faq['answer']!,
+                  style: lato(
+                    color: Colors.white70,
+                    fontSize: 15,
+                    fontWeight: FontWeight.normal,
+                  ),
+                ),
+              ),
+            ],
+          );
+        },
+      ),
+    );
+  }
+}

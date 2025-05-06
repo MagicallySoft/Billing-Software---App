@@ -266,12 +266,15 @@ class _HomeScreenState extends State<HomeScreen> {
                           radius: 27.w,
                           child: Icon(Icons.people_outline),
                         ),
-                        Text(
-                          "Parties",
-                          style: lato(
-                            color: white,
-                            fontSize: 12.sp,
-                            fontWeight: FontWeight.normal,
+                        Padding(
+                          padding: const EdgeInsets.only(left: 8),
+                          child: Text(
+                            "Parties",
+                            style: lato(
+                              color: white,
+                              fontWeight: FontWeight.normal,
+                              fontSize: 12.sp,
+                            ),
                           ),
                         ),
                       ],
@@ -302,12 +305,15 @@ class _HomeScreenState extends State<HomeScreen> {
                           radius: 27.w,
                           child: Icon(Icons.people_outline),
                         ),
-                        Text(
-                          "Parties",
-                          style: lato(
-                            color: white,
-                            fontSize: 12.sp,
-                            fontWeight: FontWeight.normal,
+                        Padding(
+                          padding: const EdgeInsets.only(left: 8),
+                          child: Text(
+                            "Parties",
+                            style: lato(
+                              color: white,
+                              fontWeight: FontWeight.normal,
+                              fontSize: 12.sp,
+                            ),
                           ),
                         ),
                       ],
@@ -320,12 +326,15 @@ class _HomeScreenState extends State<HomeScreen> {
                           radius: 27.w,
                           child: Icon(Icons.people_outline),
                         ),
-                        Text(
-                          "Parties",
-                          style: lato(
-                            color: white,
-                            fontSize: 12.sp,
-                            fontWeight: FontWeight.normal,
+                        Padding(
+                          padding: const EdgeInsets.only(left: 8),
+                          child: Text(
+                            "Parties",
+                            style: lato(
+                              color: white,
+                              fontWeight: FontWeight.normal,
+                              fontSize: 12.sp,
+                            ),
                           ),
                         ),
                         SizedBox(height: 15.sp),
@@ -333,12 +342,15 @@ class _HomeScreenState extends State<HomeScreen> {
                           radius: 27.w,
                           child: Icon(Icons.people_outline),
                         ),
-                        Text(
-                          "Parties",
-                          style: lato(
-                            color: white,
-                            fontSize: 12.sp,
-                            fontWeight: FontWeight.normal,
+                        Padding(
+                          padding: const EdgeInsets.only(left: 8),
+                          child: Text(
+                            "Parties",
+                            style: lato(
+                              color: white,
+                              fontWeight: FontWeight.normal,
+                              fontSize: 12.sp,
+                            ),
                           ),
                         ),
                       ],
@@ -351,12 +363,15 @@ class _HomeScreenState extends State<HomeScreen> {
                           radius: 27.w,
                           child: Icon(Icons.people_outline),
                         ),
-                        Text(
-                          "Parties",
-                          style: lato(
-                            color: white,
-                            fontWeight: FontWeight.normal,
-                            fontSize: 12.sp,
+                        Padding(
+                          padding: const EdgeInsets.only(left: 8),
+                          child: Text(
+                            "Parties",
+                            style: lato(
+                              color: white,
+                              fontWeight: FontWeight.normal,
+                              fontSize: 12.sp,
+                            ),
                           ),
                         ),
                         SizedBox(height: 15.h),
@@ -364,12 +379,15 @@ class _HomeScreenState extends State<HomeScreen> {
                           radius: 27.w,
                           child: Icon(Icons.people_outline),
                         ),
-                        Text(
-                          "Parties",
-                          style: lato(
-                            color: white,
-                            fontWeight: FontWeight.normal,
-                            fontSize: 12.sp,
+                        Padding(
+                          padding: const EdgeInsets.only(left: 8),
+                          child: Text(
+                            "Parties",
+                            style: lato(
+                              color: white,
+                              fontWeight: FontWeight.normal,
+                              fontSize: 12.sp,
+                            ),
                           ),
                         ),
                       ],
@@ -408,12 +426,15 @@ class _HomeScreenState extends State<HomeScreen> {
                           radius: 27.w,
                           child: Icon(Icons.people_outline),
                         ),
-                        Text(
-                          "Parties",
-                          style: lato(
-                            color: white,
-                            fontWeight: FontWeight.normal,
-                            fontSize: 12.sp,
+                        Padding(
+                          padding: const EdgeInsets.only(left: 8),
+                          child: Text(
+                            "Parties",
+                            style: lato(
+                              color: white,
+                              fontWeight: FontWeight.normal,
+                              fontSize: 12.sp,
+                            ),
                           ),
                         ),
                         SizedBox(height: 15.h),
@@ -421,12 +442,15 @@ class _HomeScreenState extends State<HomeScreen> {
                           radius: 27.w,
                           child: Icon(Icons.people_outline),
                         ),
-                        Text(
-                          "Parties",
-                          style: lato(
-                            color: white,
-                            fontWeight: FontWeight.normal,
-                            fontSize: 12.sp,
+                        Padding(
+                          padding: const EdgeInsets.only(left: 8),
+                          child: Text(
+                            "Parties",
+                            style: lato(
+                              color: white,
+                              fontWeight: FontWeight.normal,
+                              fontSize: 12.sp,
+                            ),
                           ),
                         ),
                         SizedBox(height: 15.h),
@@ -434,12 +458,15 @@ class _HomeScreenState extends State<HomeScreen> {
                           radius: 27.w,
                           child: Icon(Icons.people_outline),
                         ),
-                        Text(
-                          "Parties",
-                          style: lato(
-                            color: white,
-                            fontWeight: FontWeight.normal,
-                            fontSize: 12.sp,
+                        Padding(
+                          padding: const EdgeInsets.only(left: 8),
+                          child: Text(
+                            "Parties",
+                            style: lato(
+                              color: white,
+                              fontWeight: FontWeight.normal,
+                              fontSize: 12.sp,
+                            ),
                           ),
                         ),
                       ],
@@ -452,12 +479,15 @@ class _HomeScreenState extends State<HomeScreen> {
                           radius: 27.w,
                           child: Icon(Icons.people_outline),
                         ),
-                        Text(
-                          "Parties",
-                          style: lato(
-                            color: white,
-                            fontWeight: FontWeight.normal,
-                            fontSize: 12.sp,
+                        Padding(
+                          padding: const EdgeInsets.only(left: 8),
+                          child: Text(
+                            "Parties",
+                            style: lato(
+                              color: white,
+                              fontWeight: FontWeight.normal,
+                              fontSize: 12.sp,
+                            ),
                           ),
                         ),
                         SizedBox(height: 15.h),
@@ -465,12 +495,15 @@ class _HomeScreenState extends State<HomeScreen> {
                           radius: 27.w,
                           child: Icon(Icons.people_outline),
                         ),
-                        Text(
-                          "Parties",
-                          style: lato(
-                            color: white,
-                            fontWeight: FontWeight.normal,
-                            fontSize: 12.sp,
+                        Padding(
+                          padding: const EdgeInsets.only(left: 8),
+                          child: Text(
+                            "Parties",
+                            style: lato(
+                              color: white,
+                              fontWeight: FontWeight.normal,
+                              fontSize: 12.sp,
+                            ),
                           ),
                         ),
                         SizedBox(height: 15.h),
@@ -478,12 +511,15 @@ class _HomeScreenState extends State<HomeScreen> {
                           radius: 27.w,
                           child: Icon(Icons.people_outline),
                         ),
-                        Text(
-                          "Parties",
-                          style: lato(
-                            color: white,
-                            fontWeight: FontWeight.normal,
-                            fontSize: 12.sp,
+                        Padding(
+                          padding: const EdgeInsets.only(left: 8),
+                          child: Text(
+                            "Parties",
+                            style: lato(
+                              color: white,
+                              fontWeight: FontWeight.normal,
+                              fontSize: 12.sp,
+                            ),
                           ),
                         ),
                       ],
@@ -496,12 +532,15 @@ class _HomeScreenState extends State<HomeScreen> {
                           radius: 27.w,
                           child: Icon(Icons.people_outline),
                         ),
-                        Text(
-                          "Parties",
-                          style: lato(
-                            color: white,
-                            fontWeight: FontWeight.normal,
-                            fontSize: 12.sp,
+                        Padding(
+                          padding: const EdgeInsets.only(left: 8),
+                          child: Text(
+                            "Parties",
+                            style: lato(
+                              color: white,
+                              fontWeight: FontWeight.normal,
+                              fontSize: 12.sp,
+                            ),
                           ),
                         ),
                         SizedBox(height: 15.h),
@@ -509,12 +548,15 @@ class _HomeScreenState extends State<HomeScreen> {
                           radius: 27.w,
                           child: Icon(Icons.people_outline),
                         ),
-                        Text(
-                          "Parties",
-                          style: lato(
-                            color: white,
-                            fontWeight: FontWeight.normal,
-                            fontSize: 12.sp,
+                        Padding(
+                          padding: const EdgeInsets.only(left: 8),
+                          child: Text(
+                            "Parties",
+                            style: lato(
+                              color: white,
+                              fontWeight: FontWeight.normal,
+                              fontSize: 12.sp,
+                            ),
                           ),
                         ),
                         SizedBox(height: 15.h),
@@ -522,12 +564,15 @@ class _HomeScreenState extends State<HomeScreen> {
                           radius: 27.w,
                           child: Icon(Icons.people_outline),
                         ),
-                        Text(
-                          "Parties",
-                          style: lato(
-                            color: white,
-                            fontWeight: FontWeight.normal,
-                            fontSize: 12.sp,
+                        Padding(
+                          padding: const EdgeInsets.only(left: 8),
+                          child: Text(
+                            "Parties",
+                            style: lato(
+                              color: white,
+                              fontWeight: FontWeight.normal,
+                              fontSize: 12.sp,
+                            ),
                           ),
                         ),
                       ],
@@ -540,12 +585,15 @@ class _HomeScreenState extends State<HomeScreen> {
                           radius: 27.w,
                           child: Icon(Icons.people_outline),
                         ),
-                        Text(
-                          "Parties",
-                          style: lato(
-                            color: white,
-                            fontWeight: FontWeight.normal,
-                            fontSize: 12.sp,
+                        Padding(
+                          padding: const EdgeInsets.only(left: 8),
+                          child: Text(
+                            "Parties",
+                            style: lato(
+                              color: white,
+                              fontWeight: FontWeight.normal,
+                              fontSize: 12.sp,
+                            ),
                           ),
                         ),
                         SizedBox(height: 15.h),
@@ -553,12 +601,15 @@ class _HomeScreenState extends State<HomeScreen> {
                           radius: 27.w,
                           child: Icon(Icons.people_outline),
                         ),
-                        Text(
-                          "Parties",
-                          style: lato(
-                            color: white,
-                            fontWeight: FontWeight.normal,
-                            fontSize: 12.sp,
+                        Padding(
+                          padding: const EdgeInsets.only(left: 8),
+                          child: Text(
+                            "Parties",
+                            style: lato(
+                              color: white,
+                              fontWeight: FontWeight.normal,
+                              fontSize: 12.sp,
+                            ),
                           ),
                         ),
                       ],
@@ -646,54 +697,59 @@ class _HomeScreenState extends State<HomeScreen> {
             ],
           ),
         ),
-        bottomNavigationBar: BottomNavigationBar(
-          currentIndex: selectedIndex,
-          onTap: (index) {
-            selectedIndex = index;
-
-            switch (index) {
-              case 0:
-                break;
-              case 1:
-                Get.toNamed(Routes.bills);
-                break;
-              case 2:
-                Get.toNamed(Routes.products);
-                break;
-              case 3:
-                Get.toNamed(Routes.parties);
-                break;
-              case 4:
-                Get.toNamed(Routes.more);
-                break;
-            }
-          },
-          backgroundColor: Color(0xFF292A3A),
-          selectedItemColor: Colors.greenAccent,
-          unselectedItemColor: Colors.grey,
-          type: BottomNavigationBarType.fixed,
-          items: [
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home_outlined),
-              label: "Home",
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.receipt_outlined),
-              label: "Bills",
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.shopping_cart_outlined),
-              label: "Products",
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.people_outline),
-              label: "Parties",
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.more_horiz_outlined),
-              label: "More",
-            ),
-          ],
+        bottomNavigationBar: Theme(
+          data: Theme.of(context).copyWith(
+            splashColor: Colors.transparent,
+            highlightColor: Colors.transparent,
+          ),
+          child: BottomNavigationBar(
+            currentIndex: selectedIndex,
+            onTap: (index) {
+              selectedIndex = index;
+              switch (index) {
+                case 0:
+                  break;
+                case 1:
+                  Get.toNamed(Routes.bills);
+                  break;
+                case 2:
+                  Get.toNamed(Routes.products);
+                  break;
+                case 3:
+                  Get.toNamed(Routes.parties);
+                  break;
+                case 4:
+                  Get.toNamed(Routes.more);
+                  break;
+              }
+            },
+            backgroundColor: const Color(0xFF292A3A),
+            selectedItemColor: Colors.greenAccent,
+            unselectedItemColor: Colors.grey,
+            type: BottomNavigationBarType.fixed,
+            items: const [
+              BottomNavigationBarItem(
+                icon: Icon(Icons.home_outlined),
+                label: "Home",
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.receipt_outlined),
+                label: "Bills",
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.shopping_cart_outlined),
+                label: "Products",
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.people_outline),
+                label: "Parties",
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.more_horiz_outlined),
+                label: "More",
+              ),
+            ],
+          ),
         ),
       ),
     );

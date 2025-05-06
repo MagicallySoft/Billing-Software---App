@@ -4,13 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import '../../../../colors/colours.dart';
+import '../../../../routes/routes.dart';
 import 'bank_controller.dart';
 
 class AddAccount extends StatelessWidget {
   AddAccount({super.key});
-
   final BankController controller = Get.put(BankController());
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,8 +35,6 @@ class AddAccount extends StatelessWidget {
               ),
             ),
             SizedBox(height: 16),
-
-            // IFSC
             Text("Bank IFSC*", style: TextStyle(color: white)),
             SizedBox(height: 8),
             Row(
@@ -84,7 +81,6 @@ class AddAccount extends StatelessWidget {
             ),
             SizedBox(height: 16),
 
-            // Bank name
             Text("Bank name*", style: TextStyle(color: white)),
             SizedBox(height: 8),
             TextField(
@@ -101,11 +97,9 @@ class AddAccount extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(height: 16),
-
-            // Account no.
+            SizedBox(height: 16.h),
             Text("Bank account no.*", style: TextStyle(color: white)),
-            SizedBox(height: 8),
+            SizedBox(height: 8.h),
             TextField(
               controller: controller.accountNoController,
               keyboardType: TextInputType.number,
@@ -121,11 +115,10 @@ class AddAccount extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(height: 16),
+            SizedBox(height: 16.h),
 
-            // Confirm account no.
             Text("Confirm Bank account no.*", style: TextStyle(color: white)),
-            SizedBox(height: 8),
+            SizedBox(height: 8.h),
             TextField(
               controller: controller.confirmAccountNoController,
               keyboardType: TextInputType.number,
@@ -141,11 +134,10 @@ class AddAccount extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(height: 16),
+            SizedBox(height: 16.h),
 
-            // Branch name
             Text("Bank branch name*", style: TextStyle(color: white)),
-            SizedBox(height: 8),
+            SizedBox(height: 8.h),
             TextField(
               controller: controller.branchNameController,
               style: TextStyle(color: white),
@@ -160,11 +152,10 @@ class AddAccount extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(height: 16),
+            SizedBox(height: 16.h),
 
-            // UPI
             Text("UPI", style: TextStyle(color: white)),
-            SizedBox(height: 8),
+            SizedBox(height: 8.h),
             Row(
               children: [
                 Expanded(
@@ -184,7 +175,7 @@ class AddAccount extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(width: 10),
+                SizedBox(width: 10.h),
                 Expanded(
                   child: Container(
                     height: 50,
@@ -207,15 +198,14 @@ class AddAccount extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(height: 4),
+            SizedBox(height: 4.h),
             Text(
               "This UPI ID will be used to generate Dynamic QR codes on the invoices and bills.",
               style: TextStyle(color: Colors.grey, fontSize: 12),
             ),
-            SizedBox(height: 16),
-
+            SizedBox(height: 16.h),
             Text("Opening balance", style: TextStyle(color: white)),
-            SizedBox(height: 8),
+            SizedBox(height: 8.h),
             TextField(
               controller: controller.openingBalanceController,
               keyboardType: TextInputType.number,
@@ -235,26 +225,36 @@ class AddAccount extends StatelessWidget {
         ),
       ),
       bottomNavigationBar: Padding(
-        padding: const EdgeInsets.all(12),
-        child: SizedBox(
-          width: double.infinity,
-          height: 50,
-          child: ElevatedButton(
-            style: ElevatedButton.styleFrom(backgroundColor: Colors.blue),
-            onPressed: () {
-              controller.CheckAccountNo();
-              if (controller.bankNameController.text.isNotEmpty &&
-                  controller.accountNoController.text.isNotEmpty &&
-                  controller.confirmAccountNoController.text.isNotEmpty &&
-                  controller.branchNameController.text.isNotEmpty) {
-                controller.addAccount();
-              }
-              log(controller.bankAccounts.toString());
-              controller.clearFields();
-            },
-            child: Text(
-              "Add New Bank",
-              style: TextStyle(color: white, fontSize: 16),
+        padding: EdgeInsets.only(
+          left: 16,
+          right: 16,
+          bottom: MediaQuery.of(context).viewInsets.bottom + 8,
+        ),
+        child: ElevatedButton(
+          onPressed: () {
+            controller.CheckAccountNo();
+            if (controller.bankNameController.text.isNotEmpty &&
+                controller.accountNoController.text.isNotEmpty &&
+                controller.confirmAccountNoController.text.isNotEmpty &&
+                controller.branchNameController.text.isNotEmpty) {
+              controller.addAccount();
+            }
+            log(controller.bankAccounts.toString());
+            controller.clearFields();
+          },
+          style: ElevatedButton.styleFrom(
+            backgroundColor: Colors.indigo,
+            padding: EdgeInsets.symmetric(vertical: 16),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(8),
+            ),
+          ),
+          child: Text(
+            "Add Bank Account",
+            style: TextStyle(
+              fontSize: 16,
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
             ),
           ),
         ),

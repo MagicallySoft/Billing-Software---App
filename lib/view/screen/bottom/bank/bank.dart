@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:invoice_generator/colors/colours.dart';
 import 'package:get/get.dart';
-
 import '../../../../routes/routes.dart';
 import 'bank_controller.dart';
 
@@ -16,7 +14,7 @@ class Bank extends StatelessWidget {
       backgroundColor: Colors.black,
       appBar: AppBar(
         leading: IconButton(
-          onPressed: () => Navigator.pop(context),
+          onPressed: () => Get.back(),
           icon: Icon(Icons.arrow_back_ios_new_rounded, color: Colors.white),
         ),
         backgroundColor: Colors.black,
@@ -63,7 +61,7 @@ class Bank extends StatelessWidget {
                             ),
                             onDismissed: (_) {
                               controller.bankAccounts.removeAt(index);
-                              // Show snack bar after account removal
+
                               Get.snackbar(
                                 "Deleted",
                                 "Bank account removed",
@@ -84,7 +82,7 @@ class Bank extends StatelessWidget {
                                     if (isDefault)
                                       Icon(
                                         Icons.star,
-                                        color: Colors.green,
+                                        color: Colors.blue,
                                         size: 20,
                                       ),
                                   ],
@@ -97,7 +95,7 @@ class Bank extends StatelessWidget {
                                   icon: Icon(
                                     Icons.star_border,
                                     color:
-                                        isDefault ? Colors.green : Colors.grey,
+                                        isDefault ? Colors.blue : Colors.grey,
                                   ),
                                   onPressed:
                                       () => controller.setDefaultAccount(index),

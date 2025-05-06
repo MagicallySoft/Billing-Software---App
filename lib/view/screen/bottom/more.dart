@@ -95,7 +95,6 @@ class More extends StatelessWidget {
                   fontSize: 18,
                 ),
               ),
-              SizedBox(height: 10),
               Card(
                 color: grey900,
                 shape: RoundedRectangleBorder(
@@ -164,6 +163,110 @@ class More extends StatelessWidget {
                       ),
                       onTap: () {
                         Get.toNamed(Routes.notes_terms);
+                      },
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(height: 10),
+              Text(
+                'Support',
+                style: lato(
+                  color: Colors.white,
+                  fontWeight: FontWeight.normal,
+                  fontSize: 18,
+                ),
+              ),
+              Card(
+                color: grey900,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: Column(
+                  children: [
+                    ListTile(
+                      leading: Icon(Icons.call_outlined, color: Colors.white),
+                      title: Text(
+                        'Help & Support',
+                        style: lato(
+                          color: Colors.white,
+                          fontSize: 16.sp,
+                          fontWeight: FontWeight.normal,
+                        ),
+                      ),
+                      trailing: Icon(
+                        Icons.arrow_forward_ios,
+                        color: Colors.white,
+                        size: 16,
+                      ),
+                      onTap: () {
+                        Get.toNamed(Routes.help);
+                      },
+                    ),
+                    ListTile(
+                      leading: Icon(
+                        Icons.video_library_outlined,
+                        color: Colors.white,
+                      ),
+                      title: Text(
+                        'Tutorials',
+                        style: lato(
+                          color: Colors.white,
+                          fontSize: 16.sp,
+                          fontWeight: FontWeight.normal,
+                        ),
+                      ),
+                      trailing: Icon(
+                        Icons.arrow_forward_ios,
+                        color: Colors.white,
+                        size: 16,
+                      ),
+                      onTap: () {
+                        Get.toNamed(Routes.tutorial);
+                      },
+                    ),
+                    ListTile(
+                      leading: Icon(
+                        Icons.message_outlined,
+                        color: Colors.white,
+                      ),
+                      title: Text(
+                        'F.A.Q.s',
+                        style: lato(
+                          color: Colors.white,
+                          fontSize: 16.sp,
+                          fontWeight: FontWeight.normal,
+                        ),
+                      ),
+                      trailing: Icon(
+                        Icons.arrow_forward_ios,
+                        color: Colors.white,
+                        size: 16,
+                      ),
+                      onTap: () {
+                        Get.toNamed(Routes.faq);
+                      },
+                    ),
+                    ListTile(
+                      leading: Icon(
+                        Icons.feedback_outlined,
+                        color: Colors.white,
+                      ),
+                      title: Text(
+                        'Feedback',
+                        style: lato(
+                          color: Colors.white,
+                          fontSize: 16.sp,
+                          fontWeight: FontWeight.normal,
+                        ),
+                      ),
+                      trailing: Icon(
+                        Icons.arrow_forward_ios,
+                        color: Colors.white,
+                        size: 16,
+                      ),
+                      onTap: () {
+                        Get.toNamed(Routes.feedback);
                       },
                     ),
                   ],
