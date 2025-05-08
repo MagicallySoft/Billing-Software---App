@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
+enum SortOption { lowToHigh, highToLow, aToZ, zToA }
+
 class ProductController extends GetxController {
   final List<String> units = [
     'Kilogram',
@@ -14,14 +16,13 @@ class ProductController extends GetxController {
     'Meter',
   ];
 
-  var selectedImages = <File>[].obs;
+  RxList<File> selectedImages = <File>[].obs;
   int? editingIndex;
   RxInt qty = 1.obs;
-
   RxString selectedType = "Product".obs;
-  var selectedProductIndices = <int>[].obs; // Track selected product indices
+  RxSet<int> selectedIndexes = <int>{}.obs;
 
-  final TextEditingController unitController = TextEditingController();
+  TextEditingController unitController = TextEditingController();
   TextEditingController productName = TextEditingController();
   TextEditingController sellingPrice = TextEditingController();
   TextEditingController Tax = TextEditingController();
@@ -30,25 +31,8 @@ class ProductController extends GetxController {
   TextEditingController category = TextEditingController();
 
   TextEditingController description = TextEditingController();
-  var productData = <Map<String, dynamic>>[].obs;
+  RxList<Map<String, dynamic>> productData = <Map<String, dynamic>>[].obs;
   RxString id = "".obs;
-
-  // void submitData() {
-  //   productData.add({
-  //     'productId': generateProductId(),
-  //     'Product Name': productName.text,
-  //     'Selling Price': sellingPrice.text,
-  //     'Tax Rate': Tax.text,
-  //     'Purchase Price': purchaseRate.text,
-  //     'Unit': unitController.text,
-  //     'hsn': hsn.text,
-  //     'category': category.text,
-  //     'description': description.text,
-  //     'quantity': qty.value,
-  //     'images': selectedImages.map((image) => image.path).join(','),
-  //   });
-  //   log("Product id ${productData[productData.length - 1]['productId']}");
-  // }
 
   void generateProductId() {
     final timestamp = DateTime.now().millisecondsSinceEpoch;
@@ -97,8 +81,8 @@ class ProductController extends GetxController {
       'images': selectedImages.map((image) => image.path).join(','),
       'quantity': 1,
     };
-
-    log("Product id ${newData['productId']}");
+    generateProductId();
+    log("Product id ${id.value}");
     if (editingIndex != null &&
         editingIndex! >= 0 &&
         editingIndex! < productData.length) {
@@ -162,17 +146,84 @@ class ProductController extends GetxController {
 
   String generateAllProductShareMessage() {
     if (productData.isEmpty) return "📦 No products to share.";
-
-    return productData
-            .map((product) {
-              return """
-🆔 ID: ${product['productId'] ?? 'N/A'}
+    return "${productData.map((product) {
+      return """
+🆔 ID: ${id.value}  
 📦 Name: ${product['Product Name'] ?? 'N/A'}
 💰 Price: ₹${product['Selling Price'] ?? 'N/A'}
 🔢 Quantity: ${product['quantity'] ?? 1}
 """;
-            })
-            .join('\n-----------------------\n') +
-        "\n\n🧾 Shared via Invoice Generator 📲";
+    }).join('\n-----------------------\n')}\n\n🧾 Shared via Invoice Generator 📲";
+  }
+
+  void toggleSelection(int index) {
+    if (selectedIndexes.contains(index)) {
+      selectedIndexes.remove(index);
+    } else {
+      selectedIndexes.add(index);
+    }
+  }
+
+  void clearSelection() {
+    selectedIndexes.clear();
+    update();
+  }
+
+  void deleteSelectedProducts() {
+    final indexes = selectedIndexes.toList()..sort((a, b) => b.compareTo(a));
+    for (var index in indexes) {
+      productData.removeAt(index);
+    }
+    clearSelection();
+  }
+
+  void sortProducts(SortOption option) {
+    switch (option) {
+      case SortOption.lowToHigh:
+        productData.sort(
+          (a, b) => double.tryParse(
+            a['Selling Price'] ?? '0',
+          )!.compareTo(double.tryParse(b['Selling Price'] ?? '0')!),
+        );
+        break;
+      case SortOption.highToLow:
+        productData.sort(
+          (a, b) => double.tryParse(
+            b['Selling Price'] ?? '0',
+          )!.compareTo(double.tryParse(a['Selling Price'] ?? '0')!),
+        );
+        break;
+      case SortOption.aToZ:
+        productData.sort(
+          (a, b) => (a['Product Name'] ?? '')
+              .toString()
+              .toLowerCase()
+              .compareTo((b['Product Name'] ?? '').toString().toLowerCase()),
+        );
+        break;
+      case SortOption.zToA:
+        productData.sort(
+          (a, b) => (b['Product Name'] ?? '')
+              .toString()
+              .toLowerCase()
+              .compareTo((a['Product Name'] ?? '').toString().toLowerCase()),
+        );
+        break;
+    }
+    productData.refresh();
+  }
+
+  //getter for select all
+  bool get isAllSelected =>
+      selectedIndexes.length == productData.length && productData.isNotEmpty;
+
+  void toggleSelectAll(bool selectAll) {
+    if (selectAll) {
+      selectedIndexes.value = Set<int>.from(
+        List.generate(productData.length, (index) => index),
+      );
+    } else {
+      selectedIndexes.clear();
+    }
   }
 }

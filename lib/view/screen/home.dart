@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -710,10 +711,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 case 0:
                   break;
                 case 1:
-                  Get.toNamed(Routes.bills);
                   break;
                 case 2:
-                  Get.toNamed(Routes.products);
+                  Get.toNamed(Routes.bottom_product_view);
                   break;
                 case 3:
                   Get.toNamed(Routes.parties);

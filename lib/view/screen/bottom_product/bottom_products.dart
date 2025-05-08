@@ -1,24 +1,20 @@
 import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:invoice_generator/view/screen/invoice/product/product_controller.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:searchfield/searchfield.dart';
+
 import '../../../../colors/colours.dart';
-import '../../../../routes/routes.dart';
+import '../invoice/product/product_controller.dart';
 
-class ProductAdd extends StatefulWidget {
-  const ProductAdd.product({super.key});
+class bottomProducts extends StatelessWidget {
+  const bottomProducts({super.key});
 
-  @override
-  State<ProductAdd> createState() => _ProductAddState();
-}
-
-class _ProductAddState extends State<ProductAdd> {
   @override
   Widget build(BuildContext context) {
     final product = Get.put(ProductController());
-
     return SafeArea(
       child: Scaffold(
         resizeToAvoidBottomInset: true,
@@ -57,8 +53,6 @@ class _ProductAddState extends State<ProductAdd> {
                     ),
                   ),
                   SizedBox(height: 14.h),
-
-                  /// Type Selection
                   Container(
                     decoration: BoxDecoration(
                       color: grey900,
@@ -115,10 +109,7 @@ class _ProductAddState extends State<ProductAdd> {
                       ],
                     ),
                   ),
-
                   SizedBox(height: 14.h),
-
-                  /// Name
                   TextField(
                     controller: product.productName,
                     decoration: inputStyle(
@@ -128,8 +119,6 @@ class _ProductAddState extends State<ProductAdd> {
                     ),
                     style: const TextStyle(color: Colors.white),
                   ),
-
-                  /// Conditional Fields
                   if (product.selectedType.value == "Product") ...[
                     SizedBox(height: 12.h),
                     TextField(
@@ -167,7 +156,6 @@ class _ProductAddState extends State<ProductAdd> {
                   ],
                   SizedBox(height: 20.h),
 
-                  /// Unit Selection
                   Text(
                     "Unit",
                     style: lato(
@@ -295,7 +283,6 @@ class _ProductAddState extends State<ProductAdd> {
                     );
                   }),
 
-                  /// HSN + Description
                   if (product.selectedType.value == "Product") ...[
                     SizedBox(height: 12.h),
                     TextField(
@@ -325,10 +312,10 @@ class _ProductAddState extends State<ProductAdd> {
           child: ElevatedButton(
             onPressed: () {
               product.addProduct();
-              Get.toNamed(Routes.product, arguments: product.productData);
               log("data ${product.productData}");
               product.clearFields();
               product.selectedImages.clear();
+              Get.back();
             },
             style: ElevatedButton.styleFrom(
               backgroundColor: Colors.indigo,
@@ -340,7 +327,7 @@ class _ProductAddState extends State<ProductAdd> {
             child: Text(
               "Add Product",
               style: lato(
-                fontSize: 16,
+                fontSize: 16.sp,
                 color: Colors.white,
                 fontWeight: FontWeight.bold,
               ),
